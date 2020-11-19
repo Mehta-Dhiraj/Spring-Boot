@@ -57,5 +57,8 @@ public class AdminController {
 		service.updateSchool(school);
 		return "redirect:/update";
 	}
+	
+	// first update
+
 
 }
