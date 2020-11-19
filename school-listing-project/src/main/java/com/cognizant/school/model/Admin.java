@@ -15,7 +15,6 @@ public class Admin {
 
 	public Admin() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Admin(String username, String email, String city, String password) {

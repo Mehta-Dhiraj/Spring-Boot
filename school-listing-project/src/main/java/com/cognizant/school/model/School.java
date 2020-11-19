@@ -20,7 +20,6 @@ public class School {
 
 	public School() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public School(String name, String city, String area, String address, String fees, String bus, String infrastructure,
