@@ -68,6 +68,12 @@ public class SchoolServiceImpl implements SchoolService {
 		
 		return schoolRepository.save(school);
 	}
+	
+	/*@Override
+	public School updateSchool(School school) {
+		
+		return schoolRepository.save(school);
+	}*/
 
 
 }
