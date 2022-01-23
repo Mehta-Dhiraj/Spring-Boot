@@ -4,24 +4,35 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Login Page</title>
 <link href="webjars/bootstrap/4.5.0/css/bootstrap.min.css"
 	rel="stylesheet">
 	<style type="text/css">
 	
 	body{
 	height:100%;
-	background-color: lavender;
+	background: rgb(78, 102, 126);
+	font-family: 'Open Sans', sans-serif;
 	}
 	
-	#id1{
-	margin-left: 500px;
-	margin-top: 100px;
-	}
-	
-	td{
-	padding:5px;
-	}
+.card {
+	margin-top: 150px;
+  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+tr {
+  background-color: #20b6db;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  
+}
+input{
+	border-radius: 10px;
+}
+
+
 	
 	</style>
 
@@ -50,21 +61,23 @@
 	</nav>
 	
 	
-	<div class="container" id="id1">
-	<form action="login" method="POST" style="align:center">
-		<table>
+	<div class="container">
+	<form action="login" method="POST">
+		<table align="center">
+			<tbody class="card">
 			<tr>
-				<td><input type="text" name="username" placeholder="username"/></td>
+				<td><input class="input" type="text" name="username" placeholder="Username" /></td>
 			</tr>
 			<tr>
-				<td><input type="password" name="password" placeholder="password"/></td>
+				<td><input class="input" type="password" name="password" placeholder="Password"/></td>
 			</tr>
 			<tr>
-				<td><input type="submit" name="login" value="login" /></td>
+				<td><input class="input btn btn-primary" type="submit" name="login" value="Sign in" /></td>
 			</tr>
 			<tr>
 				<td><a href="/register">New Registration</a></td>
 			</tr>
+		</tbody>
 		</table>
 	</form>
 	</div>
