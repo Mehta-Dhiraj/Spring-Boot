@@ -1,0 +1,115 @@
+create database schools;
+use schools;
+
+create table admin 
+(
+	id integer not null AUTO_INCREMENT,
+	username varchar(70) not null,
+	email varchar(25) not null,
+    city varchar(25) not null,
+	password varchar(125) not null,
+    primary key (id)
+ );
+ create table user 
+(
+	id integer not null AUTO_INCREMENT,
+	username varchar(70) not null,
+	password varchar(125) not null,
+    active boolean,
+    roles varchar(125) not null,    
+    primary key (id)
+ );
+ select*from user;
+ INSERT INTO `admin` (`id`,`username`,`email`,`city`, `password`) VALUES (3,'dhiraj','dk@gmail.com','Buxar','1234');
+ INSERT INTO `admin` (`id`,`username`,`email`,`city`, `password`) VALUES (4,'cognizant','cognizant@cognizant.com','Pune','cognizant');
+ INSERT INTO `user` (`id`,`userName`,`password`,`active`,`roles`) VALUES (1,'dhiraj','1234',true,'ROLE_USER');
+
+create table school 
+(
+	id integer not null AUTO_INCREMENT,
+	name varchar(70) not null,
+	city varchar(25) not null,
+	area varchar(25) not null,
+	address varchar(125) not null,
+	fees varchar(16) not null,
+	bus varchar(3) not null, 
+	Infrastructure varchar(6) not null,
+	rating varchar(6) not null,
+    primary key (id)
+ );
+
+select * from school;
+
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (1,'VIBGYOR High School','Pune','Hinjewadi', 'Bhumkar Das Gugre Road New MIDC Road, Near HDFC Bank Hinjewadi, Phase 1, Maharashtra 411057', '12000/year','Yes','4.3/5','4.5/5');
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (2,"The Lexicon International School" , "Pune" , "Kalyani Nagar","  S no 212/1, Central Avenue 59, next to Big Bazaar,Kalyani Nagar, Maharashtra 411006","15000/year","Yes","4.1/5","4.3/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (3,"Takshila Delhi Public School" , "Pune" , "Kalyani Nagar", " Nyati Estate Rd, Nyati County, Mohammed Wadi, Maharashtra 411006", "13000/year","No","3.5/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (4,"Singapore International School" , "Mumbai", "Dahisar East" , " On National Highway No. 8, Post Mira Road, next to Thakur Mall, Mumbai, Maharashtra 401104", "16000/year","Yes","4.4/5","4.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (5,"The Gateway School Of Mumbai" , "Mumbai" , "Chembur East", "Sion-Trombay Road, Chembur East, next to Deonar Bus Depot, Mumbai, Maharashtra 400088", "14000/year","No","3.9/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (6,"JBCN International School" , "Mumbai" , "Borivali West" , "Plot CTS No. 96, Remison Towers, Near Bhagwati Hospital, Baburao Ranade Marg, Borivali West, Mumbai, 400103", "17000/year","Yes","4.3/5","4.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (7,"The Orbis School, Mundhwa" , "Pune" , "Hinjewadi", "35, 2D, Manjari Rd, Lonkar Nagar, Mundhwa, Pune, Maharashtra 411057", "13780/year","No","3.8/5","4.2/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (8,"D.A.V. Public School" , "Pune" , "Hinjewadi", "S.NO 157, Plot no 31, Seasons Road, Raagdari Society, Aundh, Pune, Maharashtra 411057","14000/year","Yes","4.4/5","4.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (9,"Metro Delhi International School" , "Delhi", "Shahurpur" , " Metro Delhi International School, All India Prayer Fellowship, Mission Hospital Road,, Shahurpur, Delhi 110074", "16000/year","Yes","4.4/5","4.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (10,"Kaveri International School" , "Pune" ,"Vadgaon"," s no, Lohgaon, 35, VR Shinde Rd, Tal. Haveli, Vadgaon, Pune, Maharashtra 411047", "14600/year","No","4.0/5","3.9/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (11,"The Bishop's School" , "Pune" ,"Vadgaon","5-A, General Bhagat Marg, Vadgaon, Pune, Maharashtra 411047", "13000/year","Yes","3.4/5","3.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (12,"Abhinava Vidyalaya English Medium High School" , "Pune" , "Erandwane" , " 47/16, Karve Rd, Murlidhar Smruti Society, Erandwane, Pune, Maharashtra 411004", "18000/year","Yes","4.2/5","4.5/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (13,"NES International School Mumbai" , "Mumbai" , "Chembur East" , "Agrawal Rd, Opposite Sardar Pratap Singh Garden, Swapna Nagari,Chembur East, Mumbai, Maharashtra 400088", "18000/year","Yes","4.2/5","4.3/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (14,"Campion School" , "Mumbai" , "Borivali west" , " No.13, Cooperage Rd, Dr Ambedkar Statue Chowk Area, Fort, Mumbai, Maharashtra 411057", "14600/year","Yes","4.1/5","4.2/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (15,"NES International School Mumbai" , "Mumbai", "Mulund west" , "Agrawal Rd, Opposite Sardar Pratap Singh Garden, Swapna Nagari, Mulund West, Mumbai, Maharashtra 400082", "10600/year","No","4.0/5","3.2/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (16,"JBCN International School" , "Mumbai" , "Andheri west" , "No. 1, Off Andheri Link Road, Behind Tarapore Towers, Mhada Colony, Oshiwara, Andheri West, Mumbai, Maharashtra 400058", "14600/year","Yes","4.1/5","4.2/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (17,"Ajmera Global School" , "Mumbai" , "Andheri west" , "Eksar Rd, Yogi Nagar, Borivali West, Mumbai, Maharashtra 411058", "14600/year","Yes","4.1/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (18,"The British School, New Delhi" , "Delhi" , "Shahurpur", "Dr Jose P Rizal Marg, Shahrupur, New Delhi, Delhi 110074", "17500/year","No","3.9/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (19,"Delhi Public School " , "Delhi" , "Rama Krishna Puram" , "Kaifi Azmi Marg, KD Colony, Sector 12, Rama Krishna Puram, New Delhi, Delhi 110022", "18000/year","Yes","4.2/5","4.3/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (20,"THE ARDEE SCHOOL" , "Delhi" , "Maharshi Raman Marg" , "Maharshi Raman Marg, Sujan Singh Park, New Delhi, Delhi 110003", "15500/year","Yes","4.2/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (21,"Carmel Convent School" , "Delhi" , "Rama Krishna Puram" , "Malcha Marg, Block C, Diplomatic Enclave, Rama Krishna Puram, New Delhi, Delhi 110022", "17000/year","Yes","4.3/5","4.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (22,"Loreto Convent School" , "Delhi" , "Delhi Cantonment" , "  Parade Rd, Asmara Lines, Delhi Cantonment, New Delhi, Delhi 110010", "14600/year","Yes","4.1/5","4.2/5"); 
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (23,"Gyan Bharati School" , "Delhi" , "Mayur Vihar" , "Block D,Mayur Vihar, New Delhi, Delhi 110091", "16000/year","No","3.1/5","3.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (24,"Ahlcon International School" , "Delhi" , "Delhi Cantonment" , "Mayur Vihar, Phase, 1, Chatan Jain Marg, opp. Una Enclave, New Delhi, Delhi 110091", "14600/year","Yes","4.1/5","4.2/5");
+
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (25,'Sharda Vidya Mandir Sr. Sec. School','Bhopal','Kopal','Ratibad Rd, Barkhedi Kalan, Kopal, Bhopal, Madhya Pradesh 462044', '12000/year','Yes','4.3/5','4.5/5');
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (26,"Demonstration Multipurpose school" , "Bhopal" , "Shymala Hills","RIE Campus, Shymala Hills, Bhopal, Madhya Pradesh 462013","15000/year","Yes","4.1/5","4.3/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (27,"Shree Bhavan's Bharti Public School" , "Bhopal" , "Shymala Hills", " 46/2, Kerwa Dam Rd, near Sakshi Dhaba, Kopal, Bhopal, Madhya Pradesh 462013", "13000/year","No","3.5/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (28,"The LNCT World School" , "Bhopal", "New Chouksey Nagar" , "Navi Bagh, New Chouksey Nagar, Berasia Rd, Bhopal, Madhya Pradesh 462010", "16000/year","Yes","4.4/5","4.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (29,"Ryan International School" , "Bhopal" , "Navi Bagh", "opp. BMHRC Karond, Navi Bagh, Bhopal, Madhya Pradesh 462038", "14000/year","No","3.9/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (30,"Shree Bhavan's Bharti Public School" , "Bhopal" , "Kapal" , "46/2, Kerwa Dam Rd, near Sakshi Dhaba, Kopal, Bhopal, Madhya Pradesh 462044", "17000/year","Yes","4.3/5","4.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (31,"SAGE International School" , "Bhopal" , "Ayodhya Bypass", "Ayodhya Bypass Rd, Near SIRT, K-Sector, Ayodhya Nagar, Bhopal, Madhya Pradesh 462041", "14000/year","No","3.9/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (32,"NRI Global Discovery School" , "Bhopal" , "Ayodhya Bypass" , "Near AIMS Hospital, Bagsewaniya, Saket Nagar, Habib Ganj, Bhopal, Madhya Pradesh 462041", "17000/year","Yes","4.3/5","4.4/5");
+
+
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (33,'ANAND SINGAPORE INTERNATIONAL SCHOOL','Chennai','Porur','parvathi Avenue Madanandapuram, Udhaya Nagar Main Rd, Porur, Chennai, Tamil Nadu 600116', '12500/year','Yes','4.3/5','4.5/5');
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (34,"Padma Seshadri Bala Bhavan Senior Secondary School" , "Chennai" , "Porur","29 Alagiri Sami, PT Rajan Rd, K. K. Nagar, Chennai, Tamil Nadu 600078","16000/year","Yes","4.1/5","4.3/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (35,"Kendriya Vidyalaya IIT Chennai" , "Chennai" , "Bonn-Avenue", "Bonn Avenue, Chennai, Tamil Nadu 600036", "13000/year","No","3.5/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (36,"BVM Global Perungudi " , "Chennai", "Perungudi" , "No.144, Corporation Rd, Seevaram, Perungudi, Chennai, Tamil Nadu 600096", "16000/year","Yes","4.4/5","4.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (37,"Padma Seshadri Bala Bhavan Senior Secondary School" , "Chennai" , "Perungudi", " 29 Alagiri Sami, PT Rajan Rd, K. K. Nagar, Chennai, Tamil Nadu 600096", "14800/year","No","3.9/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (38,"RISHS International School" , "Chennai" , "Bonn-Avenue" , "16/2 A, Kundrathur Main Rd, near City Union Bank Mangadu Branch 600036", "17000/year","Yes","4.3/5","4.4/5");
+
+
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (39,'Delhi Public School Bengaluru South','Banglore','Konanakunte','11th KM, Bikaspura Main Road, Kanakapura Rd, Konanakunte, Bengaluru, Karnataka 560062', '16000/year','Yes','4.3/5','4.5/5');
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (40,"HAL Public School" , "Banglore" , "Vimanpura"," Suranjan Das Rd, PO, Vimanapura, Bengaluru, Karnataka 560017","15000/year","Yes","4.1/5","4.3/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (41,"Jyothy Kendriya Vidyalaya" , "Banglore" , "Vimanpura", "Kanakapura Road,Yelachenahally, behind Kanakapura Metro Station 560017", "13600/year","No","3.5/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (42,"Presidency School" , "Banglore", "Bilekahalli" , "Post Silk Farm, Village, Off Sarjapur Rd, near Kodathi, Carmelaram, Kodathi, Bengaluru, Karnataka 560017", "16000/year","Yes","4.4/5","4.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (43,"Harvest International School" , "Banglore" , "Bilekahalli", " 29 Alagiri Sami, PT Rajan Rd, K. K. Nagar, Chennai, Tamil Nadu 600096", "14000/year","No","3.9/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (44,"Treamis World School" , "Banglore" , "Konanakunte" , "16/2 A, Kundrathur Main Rd, near City Union Bank Mangadu Branch 560062", "17000/year","Yes","4.3/5","4.4/5");
+
+
+
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (45,'Sri Swami Chinna Jeeyar International School','Hyderabad','Kukatpally','Samatha Nagar, Kukatpally, Hyderabad, 500072', '12000/year','Yes','4.3/5','4.5/5');
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (46,"Ganges Valley School" , "Hyderabad" , "Kukatpally","Survey No. 298, GRIET College Campus, Kukatpally 500072","15000/year","Yes","4.1/5","4.3/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (47,"Jubilee Hills Public School" , "Hyderabad" , "Jubilee Hills", ": Block III, Rd Number 71, Jubilee Hills, Hyderabad, Telangana 500033", "13000/year","No","3.5/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (48,"EuroSchool Hyderabad" , "Hyderabad", "Jubilee Hills" , "Survey No. 54, Near Hotel Quality Pearl inn, Hitech City- Gachibowli Link Road Jubilee Hills 500033", "16000/year","Yes","4.4/5","4.4/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (49,"CHIREC International School" , "Hyderabad" , "Serilingampally", "Plot No: 277 to 282, Gachibowli Road, Telecom Officers Colony Bhaghyalakshmi 500019", "14000/year","No","3.9/5","4.0/5");
+INSERT INTO `school` (`id`,`name`,`city`,`area`, `address`, `fees`, `bus`,`infrastructure`, `rating`) VALUES (50,"Kendriya vidyalaya no 1 uppal" , "Hyderabad" , "Uppal" , " Annapurna Colony Street Number 2, Uppal, Hyderabad, Telangana 500039", "17000/year","Yes","4.3/5","4.4/5");
+
+select*from Admin;
+use school;
+
+create table admin 
+(
+	id integer not null AUTO_INCREMENT,
+	username varchar(70) not null,
+	email varchar(55) not null,
+    city varchar(25) not null,
+	password varchar(125) not null,
+    primary key (id)
+ );
+ 
+ 

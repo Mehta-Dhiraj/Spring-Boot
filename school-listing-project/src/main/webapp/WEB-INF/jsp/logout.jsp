@@ -9,9 +9,11 @@
 	rel="stylesheet">
 </head>
 <body>
-Logout successfull<br><br>
-<a href="/admin">login</a><br><br>
-<a href="/">Home</a> 
+    <div class="container">
+        Logout successfull<br><br>
+        <a href="/admin">login</a><br><br>
+        <a href="/">Home</a> 
+    </div>
 <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
