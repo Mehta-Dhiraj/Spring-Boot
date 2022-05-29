@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.cognizant.school.model.Admin;
+import com.cognizant.school.model.Mail;
 import com.cognizant.school.services.AdminServiceImpl;
+import com.cognizant.school.services.MailServiceImpl;
 
 @Controller
 @SessionAttributes({ "city", "area" })
@@ -18,10 +20,14 @@ public class HomeController {
 	
 	@Autowired
 	AdminServiceImpl service;
+	
+	@Autowired
+	MailServiceImpl mailService;
 
 	// here the mapping for home page
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showHomePage() {
+		sendMail();
 		return "home";
 	}
 
@@ -36,6 +42,7 @@ public class HomeController {
 
 	@RequestMapping("/login")
 	public String loginPage() {
+		sendMail();
 		return "login";
 	}
 
@@ -53,7 +60,19 @@ public class HomeController {
 
 	@RequestMapping("/logout-success")
 	public String logoutPage() {
+		sendMail();
 		return "logout";
+	}
+	
+	public void sendMail() {
+		Mail mail = new Mail();
+		mail.setMailFrom("dk266107@gmail.com");
+		mail.setMailTo("dk266107@gmail.com");
+		mail.setMailSubject("Spring Boot - Email Example");
+		mail.setMailContent("Learn How to send Email using Spring Boot!!!\n\nThanks\nDhirajDevRaj.com");
+		System.out.println("Starting send mail...");
+		mailService.sendEmail(mail);
+		System.out.println("Mail sent successfully");
 	}
 
 }

@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 import com.cognizant.school.model.Mail;
 
-@Service("mailService")
-public class MailServiceimpl implements MailService {
+@Service
+public class MailServiceImpl implements MailService {
 
 	@Autowired
 	JavaMailSender mailSender;
@@ -28,7 +28,7 @@ public class MailServiceimpl implements MailService {
 			MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 			mimeMessageHelper.setSubject(mail.getMailSubject());
 			mimeMessageHelper.setTo(mail.getMailTo());
-			mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "DhirajDev.com"));
+			mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "www.Dhiraj.com"));
 			mimeMessageHelper.setSubject(mail.getMailSubject());
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
