@@ -4,6 +4,6 @@ import com.cognizant.school.model.Mail;
 
 public interface MailService {
 	
-	public void sendEmail(Mail mail);
+	public void sendMail(Mail mail);
 
 }
