@@ -27,7 +27,6 @@ public class HomeController {
 	// here the mapping for home page
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showHomePage() {
-		sendMail();
 		return "home";
 	}
 
@@ -42,7 +41,6 @@ public class HomeController {
 
 	@RequestMapping("/login")
 	public String loginPage() {
-		sendMail();
 		return "login";
 	}
 
@@ -60,19 +58,26 @@ public class HomeController {
 
 	@RequestMapping("/logout-success")
 	public String logoutPage() {
-		sendMail();
 		return "logout";
 	}
 	
-	public void sendMail() {
+	
+
+	@RequestMapping(value = "/mail",method=RequestMethod.GET)
+	public String sendMail() {
+		
 		Mail mail = new Mail();
-		mail.setMailFrom("dk266107@gmail.com");
-		mail.setMailTo("dk266107@gmail.com");
+		mail.setMailFrom("dhiraj.intuit@gmail.com");
+		mail.setMailTo("dhiraj.intuit@gmail.com");
 		mail.setMailSubject("Spring Boot - Email Example");
-		mail.setMailContent("Learn How to send Email using Spring Boot!!!\n\nThanks\nDhirajDevRaj.com");
+		mail.setMailContent("Learn How to send Email using Spring Boot!!!\n\nThanks\nwww.dhiraniGroup.com");
+
 		System.out.println("Starting send mail...");
-		mailService.sendEmail(mail);
+		mailService.sendMail(mail);
 		System.out.println("Mail sent successfully");
+		
+		return "Hello";
+		
 	}
 
 }

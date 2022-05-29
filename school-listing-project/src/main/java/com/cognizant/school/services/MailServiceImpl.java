@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import com.cognizant.school.model.Mail;
 
+
+
 @Service
 public class MailServiceImpl implements MailService {
 
@@ -20,21 +22,24 @@ public class MailServiceImpl implements MailService {
 	JavaMailSender mailSender;
 
 	@Override
-	public void sendEmail(Mail mail) {
+	public void sendMail(Mail mail) {
 
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 
 		try {
+
 			MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
 			mimeMessageHelper.setSubject(mail.getMailSubject());
-			mimeMessageHelper.setTo(mail.getMailTo());
 			mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "www.Dhiraj.com"));
-			mimeMessageHelper.setSubject(mail.getMailSubject());
+			mimeMessageHelper.setTo(mail.getMailTo());
+			mimeMessageHelper.setText(mail.getMailContent());
+
+			mailSender.send(mimeMessageHelper.getMimeMessage());
+
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
