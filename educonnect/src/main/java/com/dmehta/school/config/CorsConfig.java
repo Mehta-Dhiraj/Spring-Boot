@@ -15,11 +15,14 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         
-        // Allow React development server
+        // Allow React development server and production deployment
         configuration.setAllowedOrigins(Arrays.asList(
             "http://localhost:3000",  // React dev server
             "http://127.0.0.1:3000",
-            "http://localhost:3001"   // Alternative React port
+            "http://localhost:3001",   // Alternative React port
+            "https://educonnect-school-directory.windsurf.build",  // Production frontend
+            "https://*.windsurf.build",  // Windsurf subdomains
+            "https://*.netlify.app"      // Netlify domains
         ));
         
         configuration.setAllowedMethods(Arrays.asList(

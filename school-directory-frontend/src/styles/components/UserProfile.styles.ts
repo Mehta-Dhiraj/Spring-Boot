@@ -38,6 +38,41 @@ export const userProfileStyles = {
     p: 2
   } as SxProps<Theme>,
 
+  // Form fields
+  formField: {
+    width: '100%',
+    marginBottom: '20px',
+    '& .MuiOutlinedInput-root': {
+      borderRadius: '12px',
+      backgroundColor: 'rgba(255, 255, 255, 0.95)',
+      transition: 'all 0.3s ease',
+      minHeight: '56px',
+      fontSize: '16px',
+      '& input': {
+        padding: '16px 14px',
+        fontSize: '16px',
+        lineHeight: '1.4',
+      },
+      '&:hover': {
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+      },
+      '&.Mui-focused': {
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+        borderColor: '#667eea',
+        boxShadow: '0 0 0 2px rgba(102, 126, 234, 0.1)',
+      },
+    },
+    '& .MuiInputLabel-root': {
+      fontSize: '16px',
+      transform: 'translate(14px, 16px) scale(1)',
+      '&.Mui-focused, &.MuiInputLabel-shrink': {
+        color: '#667eea',
+        transform: 'translate(14px, -9px) scale(0.75)',
+      },
+    },
+  } as SxProps<Theme>,
+
   menuItem: {
     borderRadius: 2,
     mx: 1,
@@ -77,18 +112,7 @@ export const userProfileStyles = {
     p: 3
   } as SxProps<Theme>,
 
-  formField: {
-    mb: 2,
-    '& .MuiOutlinedInput-root': {
-      borderRadius: 2,
-      '&:hover .MuiOutlinedInput-notchedOutline': {
-        borderColor: '#667eea'
-      },
-      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-        borderColor: '#667eea'
-      }
-    }
-  } as SxProps<Theme>,
+
 
   dialogActions: {
     p: 3,

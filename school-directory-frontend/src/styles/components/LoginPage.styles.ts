@@ -24,21 +24,24 @@ export const loginPageStyles = {
 
   // Login paper with glassmorphism effect
   loginPaper: {
-    padding: 4,
+    padding: { xs: 3, sm: 4, md: 5 },
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    borderRadius: '20px',
-    background: 'rgba(255, 255, 255, 0.95)',
+    borderRadius: '24px',
+    background: 'rgba(255, 255, 255, 0.98)',
     backdropFilter: 'blur(20px)',
-    border: '1px solid rgba(255, 255, 255, 0.3)',
-    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
+    border: '1px solid rgba(255, 255, 255, 0.4)',
+    boxShadow: '0 25px 80px rgba(0, 0, 0, 0.12)',
     position: 'relative',
     zIndex: 1,
     transition: 'all 0.3s ease',
+    minWidth: { xs: '320px', sm: '400px' },
+    maxWidth: '450px',
+    width: '100%',
     '&:hover': {
-      transform: 'translateY(-2px)',
-      boxShadow: '0 25px 70px rgba(0, 0, 0, 0.2)',
+      transform: 'translateY(-3px)',
+      boxShadow: '0 30px 90px rgba(0, 0, 0, 0.18)',
     }
   } as SxProps<Theme>,
 
@@ -63,9 +66,11 @@ export const loginPageStyles = {
   logoContainer: {
     display: 'flex',
     alignItems: 'center',
-    mb: 3,
+    mb: { xs: 2, sm: 3 },
     flexDirection: 'column',
     gap: 1,
+    width: '100%',
+    textAlign: 'center',
   } as SxProps<Theme>,
 
   // Logo image styling
@@ -103,11 +108,13 @@ export const loginPageStyles = {
   // Welcome message
   welcomeMessage: {
     textAlign: 'center',
-    marginBottom: '24px',
-    padding: '16px',
-    background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)',
-    borderRadius: '12px',
-    border: '1px solid rgba(102, 126, 234, 0.2)',
+    marginBottom: { xs: '20px', sm: '24px' },
+    padding: { xs: '14px', sm: '16px' },
+    background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%)',
+    borderRadius: '16px',
+    border: '1px solid rgba(102, 126, 234, 0.15)',
+    width: '100%',
+    boxSizing: 'border-box',
   } as SxProps<Theme>,
 
   welcomeText: {
@@ -120,34 +127,56 @@ export const loginPageStyles = {
   // Form container
   formContainer: {
     width: '100%',
-    marginTop: '16px',
+    marginTop: { xs: '12px', sm: '16px' },
+    display: 'flex',
+    flexDirection: 'column',
+    gap: { xs: 2, sm: 2.5 },
   } as SxProps<Theme>,
 
   // Enhanced input field styling
   inputField: {
-    marginBottom: '20px',
+    width: '100%',
     '& .MuiOutlinedInput-root': {
-      borderRadius: '12px',
-      backgroundColor: 'rgba(255, 255, 255, 0.8)',
+      borderRadius: '14px',
+      backgroundColor: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(10px)',
-      border: '1px solid rgba(255, 255, 255, 0.3)',
+      border: '1px solid rgba(255, 255, 255, 0.4)',
       transition: 'all 0.3s ease',
+      minHeight: '56px',
+      fontSize: '16px',
+      '& input': {
+        padding: '16px 14px',
+        fontSize: '16px',
+        lineHeight: '1.4',
+        '&::placeholder': {
+          color: 'rgba(0, 0, 0, 0.4)',
+          opacity: 1,
+        },
+      },
       '&:hover': {
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
         transform: 'translateY(-1px)',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0 6px 16px rgba(0, 0, 0, 0.08)',
       },
       '&.Mui-focused': {
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderColor: '#667eea',
-        boxShadow: '0 0 0 3px rgba(102, 126, 234, 0.1)',
+        boxShadow: '0 0 0 3px rgba(102, 126, 234, 0.12)',
+        transform: 'translateY(-1px)',
       },
     },
     '& .MuiInputLabel-root': {
       fontWeight: 500,
-      '&.Mui-focused': {
+      fontSize: '16px',
+      transform: 'translate(14px, 16px) scale(1)',
+      '&.Mui-focused, &.MuiInputLabel-shrink': {
         color: '#667eea',
+        transform: 'translate(14px, -9px) scale(0.75)',
       },
+    },
+    '& .MuiFormHelperText-root': {
+      marginLeft: '14px',
+      fontSize: '14px',
     },
   } as SxProps<Theme>,
 

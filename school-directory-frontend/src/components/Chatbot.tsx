@@ -51,11 +51,14 @@ const Chatbot: React.FC<ChatbotProps> = ({ onSchoolSearch }) => {
   }, [messages]);
 
   const quickReplies = [
-    'Find schools in my area',
-    'Best rated schools',
-    'Schools with bus facility',
-    'Affordable schools',
-    'How to register?',
+    '🔍 Find top-rated schools',
+    '💰 Show affordable options',
+    '🚌 Schools with bus service',
+    '📍 Search by location',
+    '👨‍💼 Admin registration help',
+    '⭐ Explain school ratings',
+    '🏫 School facilities info',
+    '❓ How does EduConnect work?'
   ];
 
   const generateBotResponse = (userMessage: string): string => {
@@ -65,44 +68,53 @@ const Chatbot: React.FC<ChatbotProps> = ({ onSchoolSearch }) => {
       return 'Hello! Welcome to EduConnect. I can help you find schools, compare ratings, or answer questions about our platform. What would you like to know?';
     }
     
-    if (message.includes('find') || message.includes('search') || message.includes('school')) {
-      if (message.includes('area') || message.includes('location') || message.includes('city')) {
-        return 'I can help you find schools in your area! Use the search filters on the homepage to search by city and area, or tell me which city you\'re interested in.';
+    // Enhanced school search with intelligent suggestions
+    if (message.includes('search') || message.includes('find') || message.includes('school') || message.includes('looking for')) {
+      if (message.includes('rating') || message.includes('best') || message.includes('top') || message.includes('excellent')) {
+        return "🌟 Looking for top-rated schools? Great choice! Here's how I can help:\n\n• Use the rating filter above to find 4+ star schools\n• Schools with 4.5+ stars are considered exceptional\n• You can also sort by rating to see the best first\n\nWould you like me to help you search in a specific city? Just tell me which area you're interested in!";
       }
-      if (message.includes('bus')) {
-        return 'Looking for schools with bus facilities? You can filter schools by bus availability using the search options. Many schools in our directory offer transportation services.';
+      if (message.includes('fees') || message.includes('cost') || message.includes('price') || message.includes('affordable') || message.includes('budget')) {
+        return "💰 Budget-conscious? I understand! Here are smart ways to find affordable schools:\n\n• Use the fees filter to set your budget range\n• Compare schools with similar fee structures\n• Look for schools with good value (high rating + reasonable fees)\n\nWhat's your preferred budget range? I can help you find the best options!";
       }
-      if (message.includes('rating') || message.includes('best') || message.includes('top')) {
-        return 'To find the best-rated schools, you can sort the results by rating or look for schools with 4+ star ratings. Our schools are rated based on infrastructure and overall quality.';
+      if (message.includes('bus') || message.includes('transport') || message.includes('pickup') || message.includes('drop')) {
+        return "🚌 Transportation is important! I can help you find schools with reliable bus services:\n\n• Use the 'Bus Available' filter in search options\n• Many schools offer door-to-door pickup\n• Bus facilities often include safety features and tracking\n\nWhich area do you need bus service from? This will help narrow down the best options!";
       }
-      if (message.includes('fees') || message.includes('affordable') || message.includes('cheap')) {
-        return 'Looking for affordable schools? You can browse through our school listings to compare fees. Most schools display their annual fee structure for easy comparison.';
+      if (message.includes('city') || message.includes('location') || message.includes('area') || message.includes('near')) {
+        return "📍 Location matters! I can help you find schools in your preferred area:\n\n• Use the city dropdown to filter by location\n• Consider proximity to your home or workplace\n• Some schools serve multiple areas with bus routes\n\nWhich city or area are you interested in? I'll help you find the best schools there!";
       }
-      return 'I can help you search for schools! Use the search filters on the homepage to find schools by city, area, or name. What specific criteria are you looking for?';
+      return "🔍 I'm here to make your school search super easy! Here's what you can do:\n\n• **Quick Search**: Use the search bar for school names\n• **Smart Filters**: Filter by city, fees, rating, or bus availability\n• **Compare Options**: View detailed information for each school\n\nWhat specific criteria matter most to you? Academic excellence, affordability, location, or facilities?";
     }
     
-    if (message.includes('register') || message.includes('sign up') || message.includes('account')) {
-      return 'To register as an admin, click the "Login" button in the top navigation and then select "Register". You\'ll need to provide your username, email, city, and a password (minimum 6 characters).';
+    // Enhanced admin guidance with step-by-step help
+    if (message.includes('admin') || message.includes('manage') || message.includes('add school') || message.includes('register school')) {
+      return "👨‍💼 School Administrator? Welcome! Here's how to get started:\n\n**Step 1**: Click 'Login' in the top navigation\n**Step 2**: Register as an admin with your school details\n**Step 3**: Access the admin dashboard to:\n   • Add new schools to the directory\n   • Update existing school information\n   • Manage school details and ratings\n\nNeed help with the registration process? I can guide you through each step!";
     }
     
-    if (message.includes('admin') || message.includes('add school') || message.includes('manage')) {
-      return 'Admin features allow you to add, edit, and manage school listings. After logging in as an admin, you can access the admin dashboard to manage schools in the directory.';
+    // Enhanced help with categorized assistance
+    if (message.includes('help') || message.includes('how') || message.includes('what can you do') || message.includes('features')) {
+      return "🤖 I'm your intelligent school search assistant! Here's how I can help:\n\n**🔍 School Discovery**\n• Find schools by name, location, or criteria\n• Get personalized recommendations\n• Compare schools side-by-side\n\n**📊 Smart Filtering**\n• Filter by rating, fees, location, bus service\n• Sort results by your preferences\n• Find the best value options\n\n**👥 Admin Support**\n• Guide through admin registration\n• Help with school management\n• Explain platform features\n\nWhat would you like to explore first?";
     }
     
-    if (message.includes('help') || message.includes('how') || message.includes('what')) {
-      return 'EduConnect is a comprehensive school directory where you can:\n• Search for schools by location\n• Compare school ratings and facilities\n• View detailed school information\n• Filter by bus availability and fees\n\nWhat specific help do you need?';
+    // Enhanced specific feature explanations
+    if (message.includes('rating') || message.includes('stars') || message.includes('review')) {
+      return "⭐ School ratings help you make informed decisions!\n\n• **5 Stars**: Exceptional schools with outstanding facilities\n• **4+ Stars**: Excellent schools, highly recommended\n• **3+ Stars**: Good schools with solid academics\n• **Overall Rating**: Combines academics, infrastructure, and facilities\n\nRatings are based on comprehensive evaluations. Would you like to see only highly-rated schools?";
     }
     
-    if (message.includes('thank') || message.includes('thanks')) {
-      return 'You\'re welcome! I\'m here to help you find the perfect school. Feel free to ask me anything else about our school directory.';
+    if (message.includes('infrastructure') || message.includes('facilities') || message.includes('building')) {
+      return "🏫 Infrastructure quality is crucial for learning! Our schools are rated on:\n\n• **Building Quality**: Modern, safe structures\n• **Classrooms**: Well-equipped learning spaces\n• **Labs & Libraries**: Science labs, computer labs, libraries\n• **Sports Facilities**: Playgrounds, sports equipment\n• **Safety Features**: Security, emergency protocols\n\nLook for schools with high infrastructure ratings for the best learning environment!";
     }
     
-    if (message.includes('bye') || message.includes('goodbye')) {
-      return 'Goodbye! Thanks for using EduConnect. I hope you find the perfect school for your needs. Have a great day!';
+    // Conversational responses for thanks and feedback
+    if (message.includes('thank') || message.includes('thanks') || message.includes('appreciate')) {
+      return "You're very welcome! 😊 I'm happy I could help. If you have any more questions about schools, search features, or anything else, just ask! I'm here whenever you need assistance with your school search journey.";
     }
     
-    // Default response
-    return 'I\'m here to help you with school searches and information about EduConnect. You can ask me about finding schools, comparing ratings, admin features, or how to use the platform. What would you like to know?';
+    if (message.includes('good') || message.includes('great') || message.includes('awesome') || message.includes('helpful')) {
+      return "Thank you so much! 🌟 That means a lot to me. I'm designed to make your school search as smooth and successful as possible. Is there anything else I can help you with today?";
+    }
+    
+    // Enhanced default response with suggestions
+    return "I'm here to be your intelligent school search companion! 🎓 I can help with:\n\n• **Finding Schools**: Search by name, location, or criteria\n• **Smart Recommendations**: Based on your preferences\n• **Detailed Information**: Ratings, fees, facilities, bus services\n• **Admin Guidance**: For school administrators\n\nTry asking me something like:\n• \"Find me schools with good ratings\"\n• \"Show me affordable schools with bus service\"\n• \"How do I register as an admin?\"\n\nWhat would you like to know?";
   };
 
   const handleSendMessage = async () => {

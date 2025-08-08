@@ -126,28 +126,49 @@ export const registerPageStyles = {
 
   // Enhanced input field styling
   inputField: {
+    width: '100%',
+    marginBottom: { xs: '16px', sm: '20px' },
     '& .MuiOutlinedInput-root': {
-      borderRadius: '12px',
-      backgroundColor: 'rgba(255, 255, 255, 0.8)',
+      borderRadius: '14px',
+      backgroundColor: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(10px)',
-      border: '1px solid rgba(255, 255, 255, 0.3)',
+      border: '1px solid rgba(255, 255, 255, 0.4)',
       transition: 'all 0.3s ease',
+      minHeight: '56px',
+      fontSize: '16px',
+      '& input': {
+        padding: '16px 14px',
+        fontSize: '16px',
+        lineHeight: '1.4',
+        '&::placeholder': {
+          color: 'rgba(0, 0, 0, 0.4)',
+          opacity: 1,
+        },
+      },
       '&:hover': {
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
         transform: 'translateY(-1px)',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0 6px 16px rgba(0, 0, 0, 0.08)',
       },
       '&.Mui-focused': {
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderColor: '#667eea',
-        boxShadow: '0 0 0 3px rgba(102, 126, 234, 0.1)',
+        boxShadow: '0 0 0 3px rgba(102, 126, 234, 0.12)',
+        transform: 'translateY(-1px)',
       },
     },
     '& .MuiInputLabel-root': {
       fontWeight: 500,
-      '&.Mui-focused': {
+      fontSize: '16px',
+      transform: 'translate(14px, 16px) scale(1)',
+      '&.Mui-focused, &.MuiInputLabel-shrink': {
         color: '#667eea',
+        transform: 'translate(14px, -9px) scale(0.75)',
       },
+    },
+    '& .MuiFormHelperText-root': {
+      marginLeft: '14px',
+      fontSize: '14px',
     },
   } as SxProps<Theme>,
 
