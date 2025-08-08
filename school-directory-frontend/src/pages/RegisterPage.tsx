@@ -8,9 +8,12 @@ import {
   Button,
   Alert,
   MenuItem,
+  IconButton,
 } from '@mui/material';
+import { Close as CloseIcon, School as SchoolIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { authApi } from '../services/api';
+import { registerPageStyles } from '../styles/components/RegisterPage.styles';
 
 interface RegisterFormData {
   username: string;
@@ -115,141 +118,148 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: 'Open Sans, sans-serif'
-      }}
-    >
+    <Box sx={registerPageStyles.container}>
       <Container component="main" maxWidth="sm">
-        <Paper
-          elevation={6}
-          sx={{
-            padding: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            borderRadius: 2,
-            backgroundColor: 'rgba(255, 255, 255, 0.95)'
-          }}
-        >
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-            <img 
-              src="/images/headLogo.png" 
-              alt="EduConnect Logo" 
-              style={{ width: '120px', height: '32px', marginRight: '12px' }}
-            />
+        <Paper elevation={0} sx={registerPageStyles.registerPaper}>
+          {/* Close button */}
+          <IconButton 
+            onClick={() => navigate('/')}
+            sx={registerPageStyles.closeButton}
+            aria-label="Close register page"
+          >
+            <CloseIcon />
+          </IconButton>
+          
+          {/* Logo and branding */}
+          <Box sx={registerPageStyles.logoContainer}>
+            <SchoolIcon sx={{ fontSize: 48, color: '#667eea', mb: 1 }} />
+            <Typography component="h1" variant="h3" sx={registerPageStyles.mainTitle}>
+              EduConnect
+            </Typography>
+            <Typography component="h2" variant="h6" sx={registerPageStyles.subtitle}>
+              Create Admin Account
+            </Typography>
           </Box>
-          <Typography component="h1" variant="h4" color="primary" gutterBottom>
-            EduConnect
-          </Typography>
-          <Typography component="h2" variant="h6" color="text.secondary" gutterBottom>
-            Create New Account
-          </Typography>
 
-          {error && (
-            <Alert severity="error" sx={{ width: '100%', mb: 2 }}>
-              {error}
-            </Alert>
-          )}
-
-          {success && (
-            <Alert severity="success" sx={{ width: '100%', mb: 2 }}>
-              {success}
-            </Alert>
-          )}
-
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, width: '100%' }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
-              autoFocus
-              value={formData.username}
-              onChange={handleInputChange('username')}
-              disabled={loading}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              type="email"
-              value={formData.email}
-              onChange={handleInputChange('email')}
-              disabled={loading}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="city"
-              label="City"
-              name="city"
-              autoComplete="address-level2"
-              value={formData.city}
-              onChange={handleInputChange('city')}
-              disabled={loading}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="new-password"
-              value={formData.password}
-              onChange={handleInputChange('password')}
-              disabled={loading}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="confirmPassword"
-              label="Confirm Password"
-              type="password"
-              id="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleInputChange('confirmPassword')}
-              disabled={loading}
-            />
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              size="large"
-              disabled={loading}
-              sx={{ mt: 3, mb: 2, py: 1.5 }}
-            >
-              {loading ? 'Creating Account...' : 'Create Account'}
-            </Button>
-
-            <Button
-              fullWidth
-              variant="outlined"
-              size="large"
-              disabled={loading}
-              onClick={() => navigate('/login')}
-              sx={{ mb: 2, py: 1.5 }}
-            >
-              Back to Login
-            </Button>
+          {/* Welcome message */}
+          <Box sx={registerPageStyles.welcomeMessage}>
+            <Typography sx={registerPageStyles.welcomeText}>
+              Join EduConnect as an admin to manage and add school listings to help students find their perfect educational institution.
+            </Typography>
           </Box>
+
+          {/* Form container */}
+          <Box sx={registerPageStyles.formContainer}>
+            {error && (
+              <Alert severity="error" sx={registerPageStyles.errorAlert}>
+                {error}
+              </Alert>
+            )}
+
+            {success && (
+              <Alert severity="success" sx={registerPageStyles.successAlert}>
+                {success}
+              </Alert>
+            )}
+
+              <Box component="form" onSubmit={handleSubmit}>
+                <TextField
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
+                  autoFocus
+                  value={formData.username}
+                  onChange={handleInputChange('username')}
+                  disabled={loading}
+                  sx={registerPageStyles.inputField}
+                />
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange('email')}
+                  disabled={loading}
+                  sx={registerPageStyles.inputField}
+                />
+                <TextField
+                  required
+                  fullWidth
+                  id="city"
+                  label="City"
+                  name="city"
+                  autoComplete="address-level2"
+                  value={formData.city}
+                  onChange={handleInputChange('city')}
+                  disabled={loading}
+                  sx={registerPageStyles.inputField}
+                />
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                  value={formData.password}
+                  onChange={handleInputChange('password')}
+                  disabled={loading}
+                  sx={registerPageStyles.inputField}
+                />
+                
+                {/* Password requirements */}
+                <Box sx={registerPageStyles.passwordRequirements}>
+                  <Typography sx={registerPageStyles.requirementText}>
+                    Password must be at least 6 characters long
+                  </Typography>
+                </Box>
+                
+                <TextField
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  type="password"
+                  id="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange('confirmPassword')}
+                  disabled={loading}
+                  sx={registerPageStyles.inputField}
+                />
+
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  size="large"
+                  disabled={loading}
+                  sx={registerPageStyles.registerButton}
+                >
+                  {loading ? 'Creating Account...' : 'Create Account'}
+                </Button>
+              </Box>
+              
+              {/* Login link */}
+              <Box sx={registerPageStyles.loginLink}>
+                <Typography sx={registerPageStyles.loginText}>
+                  Already have an account?
+                </Typography>
+                <Button
+                  onClick={() => navigate('/login')}
+                  sx={registerPageStyles.loginButton}
+                >
+                  Sign In
+                </Button>
+              </Box>
+            </Box>
         </Paper>
       </Container>
     </Box>

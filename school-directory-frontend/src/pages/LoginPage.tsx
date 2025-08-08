@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Container, Box, Alert, Paper, Typography, IconButton } from '@mui/material';
-import { Close as CloseIcon } from '@mui/icons-material';
+import { Container, Box, Alert, Paper, Typography, IconButton, Button } from '@mui/material';
+import { Close as CloseIcon, School as SchoolIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import { authApi } from '../services/api';
 import { LoginRequest } from '../types/School';
+import { loginPageStyles } from '../styles/components/LoginPage.styles';
 
 const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -35,64 +36,57 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: 'Open Sans, sans-serif'
-      }}
-    >
+    <Box sx={loginPageStyles.container}>
       <Container component="main" maxWidth="xs">
-        <Paper
-          elevation={6}
-          sx={{
-            padding: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            borderRadius: 2,
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-            position: 'relative'
-          }}
-        >
-          {/* Close button in top-right corner */}
+        <Paper elevation={0} sx={loginPageStyles.loginPaper}>
+          {/* Close button */}
           <IconButton 
             onClick={() => navigate('/')}
-            sx={{ 
-              position: 'absolute',
-              top: 8,
-              right: 8,
-              color: 'text.secondary',
-              '&:hover': {
-                backgroundColor: 'rgba(0, 0, 0, 0.04)'
-              }
-            }}
+            sx={loginPageStyles.closeButton}
             aria-label="Close login page"
           >
             <CloseIcon />
           </IconButton>
           
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-            <img 
-              src="/images/headLogo.png" 
-              alt="EduConnect Logo" 
-              style={{ width: '120px', height: '32px', marginRight: '12px' }}
+          {/* Logo and branding */}
+          <Box sx={loginPageStyles.logoContainer}>
+            <SchoolIcon sx={{ fontSize: 48, color: '#667eea', mb: 1 }} />
+            <Typography component="h1" variant="h3" sx={loginPageStyles.mainTitle}>
+              EduConnect
+            </Typography>
+            <Typography component="h2" variant="h6" sx={loginPageStyles.subtitle}>
+              Admin Portal
+            </Typography>
+          </Box>
+
+          {/* Welcome message */}
+          <Box sx={loginPageStyles.welcomeMessage}>
+            <Typography sx={loginPageStyles.welcomeText}>
+              Welcome back! Please sign in to access the admin dashboard and manage school listings.
+            </Typography>
+          </Box>
+
+          {/* Login form */}
+          <Box sx={loginPageStyles.formContainer}>
+            <LoginForm
+              onLogin={handleLogin}
+              loading={loading}
+              error={error}
             />
           </Box>
-          <Typography component="h1" variant="h4" color="primary" gutterBottom>
-            EduConnect
-          </Typography>
-          <Typography component="h2" variant="h6" color="text.secondary" gutterBottom>
-            Admin Login
-          </Typography>
-          <LoginForm
-            onLogin={handleLogin}
-            loading={loading}
-            error={error}
-          />
+
+          {/* Register link */}
+          <Box sx={loginPageStyles.registerLink}>
+            <Typography sx={loginPageStyles.registerText}>
+              Don't have an admin account?
+            </Typography>
+            <Button
+              onClick={() => navigate('/register')}
+              sx={loginPageStyles.registerButton}
+            >
+              Create Account
+            </Button>
+          </Box>
         </Paper>
       </Container>
     </Box>
