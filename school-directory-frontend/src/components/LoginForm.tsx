@@ -172,7 +172,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, loading = false, error }
 
         <Box textAlign="center" mt={2}>
           <Typography variant="body2" color="text.secondary">
-            Demo Accounts: dhiraj/1234 or cognizant/cognizant
+            Demo Accounts: dhiraj/12341234 or test/12345678
           </Typography>
         </Box>
       </Box>

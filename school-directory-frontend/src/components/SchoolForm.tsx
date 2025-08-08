@@ -45,7 +45,7 @@ const SchoolForm: React.FC<SchoolFormProps> = ({ school, onSubmit, onCancel }) =
     }
   }, [school]);
 
-  const cities = ['Pune', 'Mumbai', 'Bhopal', 'Hyderabad'];
+
   const busOptions = ['Yes', 'No'];
 
   const handleInputChange = (field: string) => (
@@ -140,20 +140,14 @@ const SchoolForm: React.FC<SchoolFormProps> = ({ school, onSubmit, onCancel }) =
           <Box sx={{ flex: '1 1 200px' }}>
             <TextField
               fullWidth
-              select
               label="City"
               value={formData.city}
               onChange={handleInputChange('city')}
               error={!!errors.city}
               helperText={errors.city}
+              placeholder="Enter city name"
               required
-            >
-              {cities.map((city) => (
-                <MenuItem key={city} value={city}>
-                  {city}
-                </MenuItem>
-              ))}
-            </TextField>
+            />
           </Box>
 
           <Box sx={{ flex: '1 1 200px' }}>

@@ -29,6 +29,7 @@ import {
 import { School } from '../types/School';
 import { schoolApi } from '../services/api';
 import SchoolForm from './SchoolForm';
+import { adminDashboardStyles } from '../styles/components';
 
 const AdminDashboard: React.FC = () => {
   const [schools, setSchools] = useState<School[]>([]);
@@ -104,12 +105,13 @@ const AdminDashboard: React.FC = () => {
       } else {
         const response = await schoolApi.createSchool(schoolData);
         
-        // Add new school to the end of the list
-        setSchools(prevSchools => [...prevSchools, response.data]);
+        // Reload all schools to ensure we get the complete data
+        await loadSchools();
       }
       
       setIsFormOpen(false);
       setSelectedSchool(null);
+      setError(''); // Clear any previous errors
       
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || 'Failed to save school';
@@ -134,17 +136,17 @@ const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={adminDashboardStyles.container}>
       {/* Header */}
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
-        <Typography variant="h4" component="h1">
+      <Box sx={adminDashboardStyles.header}>
+        <Typography variant="h4" sx={adminDashboardStyles.title}>
           School Management Dashboard
         </Typography>
         <Button
           variant="contained"
           startIcon={<AddIcon />}
           onClick={handleAddSchool}
-          size="large"
+          sx={adminDashboardStyles.addButton}
         >
           Add New School
         </Button>
@@ -230,70 +232,69 @@ const AdminDashboard: React.FC = () => {
       )}
 
       {/* Schools Grid */}
-      <Box 
-        sx={{ 
-          display: 'grid', 
-          gridTemplateColumns: {
-            xs: '1fr',
-            md: 'repeat(2, 1fr)',
-            lg: 'repeat(3, 1fr)'
-          },
-          gap: 3
-        }}
-      >
+      <Box sx={adminDashboardStyles.schoolsGrid}>
         {schools.map((school) => (
-          <Box key={school.id}>
-            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h6" gutterBottom noWrap>
-                  {school.name}
-                </Typography>
-                
-                <Box display="flex" alignItems="center" mb={1}>
-                  <LocationOn fontSize="small" color="action" />
-                  <Typography variant="body2" color="text.secondary" ml={0.5}>
-                    {school.area}, {school.city}
+          <Box 
+            key={school.id}
+            sx={adminDashboardStyles.schoolCardContainer}
+          >
+            <Card sx={adminDashboardStyles.schoolCard}>
+              <CardContent sx={adminDashboardStyles.cardContent}>
+                {/* Header with School Name and Bus Info */}
+                <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={2}>
+                  <Typography variant="h6" sx={adminDashboardStyles.schoolName}>
+                    {school.name || 'Unnamed School'}
                   </Typography>
-                </Box>
-
-                <Box display="flex" alignItems="center" mb={1}>
-                  <AttachMoney fontSize="small" color="action" />
-                  <Typography variant="body2" color="text.secondary" ml={0.5}>
-                    {school.fees}
-                  </Typography>
-                </Box>
-
-                <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
-                  <Chip
-                    label={`Rating: ${school.rating}`}
-                    color={getRatingColor(school.rating)}
-                    size="small"
-                  />
                   <Chip
                     label={school.bus === 'Yes' ? 'Bus Available' : 'No Bus'}
                     color={school.bus === 'Yes' ? 'success' : 'default'}
                     size="small"
+                    sx={adminDashboardStyles.busChip}
                   />
                 </Box>
+                
+                <Box sx={adminDashboardStyles.locationBox}>
+                  <LocationOn sx={adminDashboardStyles.locationIcon} />
+                  <Typography variant="body2" sx={adminDashboardStyles.locationText}>
+                    {(school.area && school.city) ? `${school.area}, ${school.city}` : 'Location not specified'}
+                  </Typography>
+                </Box>
 
-                <Typography variant="body2" color="text.secondary" noWrap>
-                  {school.address}
+                <Box sx={adminDashboardStyles.feesBox}>
+                  <AttachMoney sx={adminDashboardStyles.feesIcon} />
+                  <Typography variant="body2" sx={adminDashboardStyles.feesText}>
+                    {school.fees || 'Fees not specified'}
+                  </Typography>
+                </Box>
+
+                <Chip
+                  label={`Rating: ${school.rating || 'Not rated'}`}
+                  color={school.rating ? getRatingColor(school.rating) : 'default'}
+                  size="small"
+                  sx={adminDashboardStyles.ratingChip}
+                />
+
+                <Typography 
+                  variant="body2" 
+                  sx={adminDashboardStyles.addressText}
+                >
+                  {school.address || 'Address not provided'}
                 </Typography>
               </CardContent>
 
-              <Box p={2} pt={0}>
-                <Box display="flex" justifyContent="space-between">
+              <Box sx={adminDashboardStyles.cardActions}>
+                <Box display="flex" justifyContent="space-between" gap={1}>
                   <IconButton
-                    color="primary"
                     onClick={() => handleEditSchool(school)}
                     title="Edit School"
+                    sx={adminDashboardStyles.editActionButton}
                   >
                     <EditIcon />
                   </IconButton>
                   <IconButton
-                    color="error"
                     onClick={() => handleDeleteSchool(school)}
                     title="Delete School"
+                    sx={adminDashboardStyles.deleteActionButton}
                   >
                     <DeleteIcon />
                   </IconButton>
