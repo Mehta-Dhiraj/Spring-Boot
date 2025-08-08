@@ -22,6 +22,7 @@ import {
   Close as CloseIcon,
 } from '@mui/icons-material';
 import { authApi } from '../services/api';
+import { userProfileStyles } from '../styles/components';
 
 interface UserProfileProps {
   anchorEl: HTMLElement | null;
@@ -293,6 +294,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
               fullWidth
               required
               disabled={loading}
+              sx={userProfileStyles.formField}
             />
             
             <TextField
@@ -304,6 +306,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
               fullWidth
               required
               disabled={loading}
+              sx={userProfileStyles.formField}
             />
             
             <TextField
@@ -314,6 +317,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
               fullWidth
               required
               disabled={loading}
+              sx={userProfileStyles.formField}
             />
             
             <Divider sx={{ my: 1 }} />

@@ -10,6 +10,7 @@ import {
 import { School as SchoolIcon } from '@mui/icons-material';
 import SchoolCard from '../components/SchoolCard';
 import SearchFilters from '../components/SearchFilters';
+import Chatbot from '../components/Chatbot';
 import { School, SearchFilters as SearchFiltersType } from '../types/School';
 import { schoolApi } from '../services/api';
 
@@ -370,6 +371,17 @@ const HomePage: React.FC = () => {
           )}
         </Container>
       </Box>
+      
+      {/* Chatbot */}
+      <Chatbot onSchoolSearch={(query: string) => {
+        // Convert string query to search filters format
+        const searchFilters: SearchFiltersType = {
+          city: '',
+          area: '',
+          name: query,
+        };
+        handleSearch(searchFilters);
+      }} />
     </>
   );
 };

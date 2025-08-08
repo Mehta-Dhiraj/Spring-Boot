@@ -1,0 +1,272 @@
+import { SxProps, Theme } from '@mui/material/styles';
+
+export const registerPageStyles = {
+  // Main container with gradient background
+  container: {
+    minHeight: '100vh',
+    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+    position: 'relative',
+    py: 4,
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+      opacity: 0.3,
+    }
+  } as SxProps<Theme>,
+
+  // Register paper with glassmorphism effect
+  registerPaper: {
+    padding: 4,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    borderRadius: '20px',
+    background: 'rgba(255, 255, 255, 0.95)',
+    backdropFilter: 'blur(20px)',
+    border: '1px solid rgba(255, 255, 255, 0.3)',
+    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
+    position: 'relative',
+    zIndex: 1,
+    transition: 'all 0.3s ease',
+    '&:hover': {
+      transform: 'translateY(-2px)',
+      boxShadow: '0 25px 70px rgba(0, 0, 0, 0.2)',
+    }
+  } as SxProps<Theme>,
+
+  // Close button styling
+  closeButton: {
+    position: 'absolute',
+    top: 16,
+    right: 16,
+    color: 'text.secondary',
+    background: 'rgba(255, 255, 255, 0.8)',
+    backdropFilter: 'blur(10px)',
+    border: '1px solid rgba(255, 255, 255, 0.3)',
+    '&:hover': {
+      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+      transform: 'scale(1.05)',
+      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+    },
+    transition: 'all 0.3s ease',
+  } as SxProps<Theme>,
+
+  // Logo container
+  logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    mb: 3,
+    flexDirection: 'column',
+    gap: 1,
+  } as SxProps<Theme>,
+
+  // Main title with gradient text
+  mainTitle: {
+    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    fontWeight: 700,
+    fontSize: '2.2rem',
+    textAlign: 'center',
+    marginBottom: '8px',
+    fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+    letterSpacing: '-0.02em',
+  } as SxProps<Theme>,
+
+  // Subtitle styling
+  subtitle: {
+    color: 'text.secondary',
+    fontWeight: 500,
+    fontSize: '1rem',
+    textAlign: 'center',
+    marginBottom: '32px',
+    opacity: 0.8,
+  } as SxProps<Theme>,
+
+  // Welcome message
+  welcomeMessage: {
+    textAlign: 'center',
+    marginBottom: '24px',
+    padding: '16px',
+    background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)',
+    borderRadius: '12px',
+    border: '1px solid rgba(102, 126, 234, 0.2)',
+  } as SxProps<Theme>,
+
+  welcomeText: {
+    color: 'text.primary',
+    fontSize: '0.9rem',
+    lineHeight: 1.5,
+    margin: 0,
+  } as SxProps<Theme>,
+
+  // Form container
+  formContainer: {
+    width: '100%',
+    marginTop: '16px',
+  } as SxProps<Theme>,
+
+  // Form fields container
+  formFields: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2,
+    mb: 3,
+  } as SxProps<Theme>,
+
+  // Enhanced input field styling
+  inputField: {
+    width: '100%',
+    marginBottom: { xs: '16px', sm: '20px' },
+    '& .MuiOutlinedInput-root': {
+      borderRadius: '14px',
+      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+      backdropFilter: 'blur(10px)',
+      border: '1px solid rgba(255, 255, 255, 0.4)',
+      transition: 'all 0.3s ease',
+      minHeight: '56px',
+      fontSize: '16px',
+      '& input': {
+        padding: '16px 14px',
+        fontSize: '16px',
+        lineHeight: '1.4',
+        '&::placeholder': {
+          color: 'rgba(0, 0, 0, 0.4)',
+          opacity: 1,
+        },
+      },
+      '&:hover': {
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        transform: 'translateY(-1px)',
+        boxShadow: '0 6px 16px rgba(0, 0, 0, 0.08)',
+      },
+      '&.Mui-focused': {
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+        borderColor: '#667eea',
+        boxShadow: '0 0 0 3px rgba(102, 126, 234, 0.12)',
+        transform: 'translateY(-1px)',
+      },
+    },
+    '& .MuiInputLabel-root': {
+      fontWeight: 500,
+      fontSize: '16px',
+      transform: 'translate(14px, 16px) scale(1)',
+      '&.Mui-focused, &.MuiInputLabel-shrink': {
+        color: '#667eea',
+        transform: 'translate(14px, -9px) scale(0.75)',
+      },
+    },
+    '& .MuiFormHelperText-root': {
+      marginLeft: '14px',
+      fontSize: '14px',
+    },
+  } as SxProps<Theme>,
+
+  // Register button styling
+  registerButton: {
+    marginTop: '24px',
+    marginBottom: '16px',
+    padding: '12px 32px',
+    borderRadius: '12px',
+    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    color: 'white',
+    fontWeight: 600,
+    fontSize: '1rem',
+    textTransform: 'none',
+    boxShadow: '0 8px 24px rgba(102, 126, 234, 0.3)',
+    border: 'none',
+    transition: 'all 0.3s ease',
+    '&:hover': {
+      background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
+      transform: 'translateY(-2px)',
+      boxShadow: '0 12px 32px rgba(102, 126, 234, 0.4)',
+    },
+    '&:active': {
+      transform: 'translateY(0)',
+    },
+    '&:disabled': {
+      background: 'rgba(0, 0, 0, 0.12)',
+      color: 'rgba(0, 0, 0, 0.26)',
+      boxShadow: 'none',
+      transform: 'none',
+    },
+  } as SxProps<Theme>,
+
+  // Login link styling
+  loginLink: {
+    textAlign: 'center',
+    marginTop: '20px',
+    padding: '16px',
+    borderRadius: '12px',
+    background: 'rgba(102, 126, 234, 0.05)',
+    border: '1px solid rgba(102, 126, 234, 0.1)',
+  } as SxProps<Theme>,
+
+  loginText: {
+    color: 'text.secondary',
+    fontSize: '0.9rem',
+    marginBottom: '8px',
+  } as SxProps<Theme>,
+
+  loginButton: {
+    color: '#667eea',
+    fontWeight: 600,
+    textTransform: 'none',
+    textDecoration: 'none',
+    padding: '8px 16px',
+    borderRadius: '8px',
+    transition: 'all 0.3s ease',
+    '&:hover': {
+      backgroundColor: 'rgba(102, 126, 234, 0.1)',
+      textDecoration: 'none',
+    },
+  } as SxProps<Theme>,
+
+  // Alert styling
+  errorAlert: {
+    marginBottom: '20px',
+    borderRadius: '12px',
+    backgroundColor: 'rgba(244, 67, 54, 0.1)',
+    border: '1px solid rgba(244, 67, 54, 0.2)',
+    '& .MuiAlert-icon': {
+      color: '#f44336',
+    },
+  } as SxProps<Theme>,
+
+  successAlert: {
+    marginBottom: '20px',
+    borderRadius: '12px',
+    backgroundColor: 'rgba(76, 175, 80, 0.1)',
+    border: '1px solid rgba(76, 175, 80, 0.2)',
+    '& .MuiAlert-icon': {
+      color: '#4caf50',
+    },
+  } as SxProps<Theme>,
+
+  // Password requirements
+  passwordRequirements: {
+    marginTop: '8px',
+    padding: '12px',
+    background: 'rgba(102, 126, 234, 0.05)',
+    borderRadius: '8px',
+    border: '1px solid rgba(102, 126, 234, 0.1)',
+  } as SxProps<Theme>,
+
+  requirementText: {
+    fontSize: '0.8rem',
+    color: 'text.secondary',
+    lineHeight: 1.4,
+  } as SxProps<Theme>,
+};
+
+export default registerPageStyles;
