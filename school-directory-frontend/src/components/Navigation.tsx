@@ -31,6 +31,19 @@ const Navigation: React.FC<NavigationProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Get logged-in user information
+  const getUserInfo = () => {
+    try {
+      const userInfo = localStorage.getItem('userInfo');
+      return userInfo ? JSON.parse(userInfo) : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const userInfo = getUserInfo();
+  const username = userInfo?.username || 'Admin';
+
   const handleNavigation = (path: string) => {
     navigate(path);
   };
@@ -38,6 +51,10 @@ const Navigation: React.FC<NavigationProps> = ({
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userInfo');
+    
+    // Trigger authentication state update in App.tsx
+    window.dispatchEvent(new Event('authUpdated'));
+    
     if (onLogout) onLogout();
     navigate('/');
   };
@@ -93,7 +110,7 @@ const Navigation: React.FC<NavigationProps> = ({
                   backgroundColor: location.pathname === '/admin' ? 'rgba(255,255,255,0.1)' : 'transparent'
                 }}
               >
-                Admin
+                {username}
               </Button>
               <Button
                 color="inherit"

@@ -58,21 +58,21 @@ public class AuthApiController {
             // Validate credentials using repository
             Admin admin = adminRepository.findByUsername(loginRequest.getUsername());
             
-            // Check if admin exists and password matches (handle both BCrypt and plain text)
+            // Check if admin exists
             if (admin == null) {
                 return ResponseEntity.status(401).body(createErrorResponse("Invalid username or password"));
             }
             
+            // Verify password - handle both plain text and BCrypt
             boolean passwordMatches = false;
             String storedPassword = admin.getPassword();
             String inputPassword = loginRequest.getPassword();
             
-            // Check if password is BCrypt encoded (starts with $2a$, $2b$, or $2y$)
             if (storedPassword.startsWith("$2a$") || storedPassword.startsWith("$2b$") || storedPassword.startsWith("$2y$")) {
-                // Use BCrypt matching
+                // BCrypt encoded password
                 passwordMatches = passwordEncoder.matches(inputPassword, storedPassword);
             } else {
-                // Plain text comparison (for backward compatibility)
+                // Plain text password (for testing/backward compatibility)
                 passwordMatches = inputPassword.equals(storedPassword);
             }
             
@@ -136,6 +136,8 @@ public class AuthApiController {
             ));
             
             return ResponseEntity.status(201).body(response);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(createErrorResponse(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(createErrorResponse("An error occurred during registration"));
         }

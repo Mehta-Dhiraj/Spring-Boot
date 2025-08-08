@@ -28,7 +28,7 @@ import {
 } from '@mui/icons-material';
 import { School } from '../types/School';
 import { schoolApi } from '../services/api';
-import { SchoolForm } from './SchoolForm';
+import SchoolForm from './SchoolForm';
 
 const AdminDashboard: React.FC = () => {
   const [schools, setSchools] = useState<School[]>([]);
@@ -86,15 +86,34 @@ const AdminDashboard: React.FC = () => {
   const handleFormSubmit = async (schoolData: Partial<School>) => {
     try {
       if (selectedSchool) {
-        await schoolApi.updateSchool(selectedSchool.id, schoolData);
+        // Merge the partial update data with the existing school data
+        const completeSchoolData = {
+          ...selectedSchool,
+          ...schoolData
+        };
+        
+        const response = await schoolApi.updateSchool(selectedSchool.id, completeSchoolData);
+        
+        // Update the school in place to preserve list order
+        setSchools(prevSchools => 
+          prevSchools.map(school => 
+            school.id === selectedSchool.id ? response.data : school
+          )
+        );
+        
       } else {
-        await schoolApi.createSchool(schoolData);
+        const response = await schoolApi.createSchool(schoolData);
+        
+        // Add new school to the end of the list
+        setSchools(prevSchools => [...prevSchools, response.data]);
       }
-      await loadSchools();
+      
       setIsFormOpen(false);
       setSelectedSchool(null);
+      
     } catch (err: any) {
-      setError('Failed to save school');
+      const errorMessage = err.response?.data?.message || 'Failed to save school';
+      setError(errorMessage);
     }
   };
 

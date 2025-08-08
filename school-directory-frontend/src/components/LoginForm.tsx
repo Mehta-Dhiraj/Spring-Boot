@@ -159,6 +159,17 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, loading = false, error }
           {loading ? 'Signing In...' : 'Sign In'}
         </Button>
 
+        <Button
+          fullWidth
+          variant="outlined"
+          size="large"
+          disabled={loading}
+          sx={{ mt: 1, mb: 2, py: 1.5 }}
+          onClick={() => window.location.href = '/register'}
+        >
+          Create New Account
+        </Button>
+
         <Box textAlign="center" mt={2}>
           <Typography variant="body2" color="text.secondary">
             Demo Accounts: dhiraj/1234 or cognizant/cognizant

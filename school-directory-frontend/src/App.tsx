@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { ThemeProvider, createTheme, CssBaseline, Box } from '@mui/material';
 import Navigation from './components/Navigation';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import FavoritesPage from './pages/FavoritesPage';
 import AdminDashboard from './components/AdminDashboard';
 import HomePage from './pages/HomePage';
@@ -69,8 +70,12 @@ function App() {
 
   useEffect(() => {
     // Check authentication status
-    const token = localStorage.getItem('authToken');
-    setIsAuthenticated(!!token);
+    const updateAuthStatus = () => {
+      const token = localStorage.getItem('authToken');
+      setIsAuthenticated(!!token);
+    };
+    
+    updateAuthStatus();
 
     // Load favorite count
     const updateFavoriteCount = () => {
@@ -81,8 +86,9 @@ function App() {
 
     updateFavoriteCount();
 
-    // Listen for storage changes to update favorite count
+    // Listen for storage changes to update both auth status and favorite count
     const handleStorageChange = () => {
+      updateAuthStatus();
       updateFavoriteCount();
     };
 
@@ -90,10 +96,12 @@ function App() {
     
     // Custom event for same-tab updates
     window.addEventListener('favoritesUpdated', handleStorageChange);
+    window.addEventListener('authUpdated', handleStorageChange);
 
     return () => {
       window.removeEventListener('storage', handleStorageChange);
       window.removeEventListener('favoritesUpdated', handleStorageChange);
+      window.removeEventListener('authUpdated', handleStorageChange);
     };
   }, []);
 
@@ -116,6 +124,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route 
                 path="/admin" 

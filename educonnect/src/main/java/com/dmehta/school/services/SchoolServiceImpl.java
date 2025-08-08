@@ -183,13 +183,33 @@ public class SchoolServiceImpl implements SchoolService {
 			throw new IllegalArgumentException("Infrastructure information is required");
 		}
 		
+		// Validate infrastructure format (should be a number between 1-5, can be "4.0" or "4.0/5")
+		try {
+			String infraStr = infrastructure;
+			// Handle "4.0/5" format by extracting the number part
+			if (infrastructure.contains("/5")) {
+				infraStr = infrastructure.split("/5")[0];
+			}
+			double infraValue = Double.parseDouble(infraStr);
+			if (infraValue < 1.0 || infraValue > 5.0) {
+				throw new IllegalArgumentException("Infrastructure rating must be between 1.0 and 5.0");
+			}
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("Infrastructure rating must be a valid number");
+		}
+		
 		if (!StringUtils.hasText(rating)) {
 			throw new IllegalArgumentException("Rating information is required");
 		}
 		
-		// Validate rating format (should be a number between 1-5)
+		// Validate rating format (should be a number between 1-5, can be "4.2" or "4.2/5")
 		try {
-			double ratingValue = Double.parseDouble(rating);
+			String ratingStr = rating;
+			// Handle "4.2/5" format by extracting the number part
+			if (rating.contains("/5")) {
+				ratingStr = rating.split("/5")[0];
+			}
+			double ratingValue = Double.parseDouble(ratingStr);
 			if (ratingValue < 1.0 || ratingValue > 5.0) {
 				throw new IllegalArgumentException("Rating must be between 1.0 and 5.0");
 			}

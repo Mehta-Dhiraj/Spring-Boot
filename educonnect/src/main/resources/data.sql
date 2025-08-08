@@ -3,10 +3,10 @@
 -- Tables will be created by Hibernate based on JPA entities with auto-generated IDs
 
 -- Insert admin data (IDs will be auto-generated)
--- Passwords are BCrypt-encoded with 12 rounds: dhiraj/1234, cognizant/cognizant
+-- Using BCrypt-encoded passwords: dhiraj/password123, cognizant/cognizant123
 INSERT INTO admin (username, email, city, password) VALUES 
 ('dhiraj', 'dk@gmail.com', 'Buxar', '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqfcINVy4YvNiOpWpKGF.Km'),
-('cognizant', 'cognizant@cognizant.com', 'Pune', '$2a$12$8nMTnOUmnWwREBXDfM2TMOenanUMbPnmO0GyELnkxEEBr6Lawo50.');
+('cognizant', 'cognizant@cognizant.com', 'Pune', '$2a$12$8ZhNkF7qGOZ8OUBDNvJ8/.vGA1O/ZxvJn5n5wUe5PBSKMLrKUK9Wy');
 
 -- Insert all 50 schools from original data.txt (IDs will be auto-generated)
 INSERT INTO school (name, city, area, address, fees, bus, infrastructure, rating) VALUES 

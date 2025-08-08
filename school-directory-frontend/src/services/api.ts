@@ -24,19 +24,13 @@ export const schoolApi = {
 };
 
 // Authentication API
-export const authAPI = {
-  login: (credentials: LoginRequest) => api.post<any>('/auth/login', credentials),
-  register: (userData: any) => api.post<any>('/auth/register', userData),
-  profile: () => api.get<any>('/auth/profile'),
-};
-
-// Auth API endpoints
 export const authApi = {
   login: (credentials: { username: string; password: string }) => 
     api.post('/auth/login', credentials),
   register: (userData: any) => api.post('/auth/register', userData),
   logout: () => api.post('/auth/logout'),
   getProfile: () => api.get('/auth/profile'),
+  profile: () => api.get('/auth/profile'),
 };
 
 export default api;

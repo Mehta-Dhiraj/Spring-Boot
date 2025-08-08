@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Container, Box, Alert, Paper, Typography } from '@mui/material';
+import { Container, Box, Alert, Paper, Typography, IconButton } from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
-import { authAPI } from '../services/api';
+import { authApi } from '../services/api';
 import { LoginRequest } from '../types/School';
 
 const LoginPage: React.FC = () => {
@@ -15,11 +16,14 @@ const LoginPage: React.FC = () => {
     setError('');
 
     try {
-      const response = await authAPI.login(credentials);
+      const response = await authApi.login(credentials);
       
       // Store authentication data
       localStorage.setItem('authToken', response.data?.token || 'demo-token');
       localStorage.setItem('userInfo', JSON.stringify(response.data?.user || { username: credentials.username }));
+      
+      // Trigger authentication state update in App.tsx
+      window.dispatchEvent(new Event('authUpdated'));
       
       // Navigate to admin dashboard
       navigate('/admin');
@@ -50,9 +54,27 @@ const LoginPage: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             borderRadius: 2,
-            backgroundColor: 'rgba(255, 255, 255, 0.95)'
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            position: 'relative'
           }}
         >
+          {/* Close button in top-right corner */}
+          <IconButton 
+            onClick={() => navigate('/')}
+            sx={{ 
+              position: 'absolute',
+              top: 8,
+              right: 8,
+              color: 'text.secondary',
+              '&:hover': {
+                backgroundColor: 'rgba(0, 0, 0, 0.04)'
+              }
+            }}
+            aria-label="Close login page"
+          >
+            <CloseIcon />
+          </IconButton>
+          
           <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
             <img 
               src="/images/headLogo.png" 
