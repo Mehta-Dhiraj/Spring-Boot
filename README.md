@@ -1,43 +1,91 @@
-# School Listing Application
+# EduConnect - School Directory Application
 
-A comprehensive Spring Boot web application for managing and searching school information across multiple cities in India. The application provides functionality for searching schools by city and area, admin management, and CRUD operations.
+🎉 **MODERN FULL-STACK APPLICATION WITH SPRING BOOT 3.x & REACT!**
+
+A comprehensive, modern full-stack web application for managing and searching school information across multiple cities in India. The application features a React TypeScript frontend with Material-UI and a Spring Boot backend with PostgreSQL database.
 
 ## 🏗️ Architecture
 
-- **Backend**: Spring Boot 2.3.3 with Java 1.8
-- **Database**: PostgreSQL 13 (running in Podman container)
-- **Frontend**: JSP with Bootstrap 4.5.0 and jQuery 3.5.1
-- **Security**: Spring Security for authentication
-- **ORM**: Hibernate/JPA with auto-generated schemas
-- **Build Tool**: Maven
+### Backend
+- **Framework**: Spring Boot 3.2.8 with Java 17 (OpenJDK)
+- **Database**: PostgreSQL 13+ (running in Podman container)
+- **Security**: Spring Security 6.x with BCrypt password encoding
+- **ORM**: Hibernate 6.4.x/JPA with Jakarta EE
+- **API Documentation**: SpringDoc OpenAPI 3 (Swagger UI)
+- **Build Tool**: Maven 3.11+
+- **Testing**: JUnit 5, Mockito, Spring Boot Test
+
+### Frontend
+- **Framework**: React 18+ with TypeScript
+- **UI Library**: Material-UI (MUI) 5.x
+- **Routing**: React Router 6.x
+- **HTTP Client**: Axios
+- **Build Tool**: Create React App with TypeScript
+- **Styling**: Material-UI theming with custom components
+
+## ✨ Key Features
+
+### 🎨 **Modern React Frontend**
+- **Responsive Design**: Material-UI components with mobile-first approach
+- **TypeScript**: Type-safe development with enhanced IDE support
+- **Real-time State Management**: Reactive authentication and data updates
+- **Intuitive User Experience**: Clean, professional interface with smooth navigation
+- **Favorites System**: Local storage-based school favorites with persistent state
+- **Advanced Search**: Filter schools by city, area, rating, and infrastructure
+
+### 🔒 **Security Enhancements**
+- **BCrypt Password Encoding**: 12-round hashing for secure password storage
+- **Input Validation**: Frontend and backend validation with specific error messages
+- **CORS Configuration**: Properly configured for frontend-backend communication
+- **Session Management**: Secure authentication state management
+- **Password Requirements**: Minimum 6-character password policy
+- **Security Headers**: HSTS, frame options, content type protection
+
+### 🚀 **Performance Optimizations**
+- **Optimized Database Queries**: Custom JPA repository methods
+- **HikariCP Connection Pooling**: Auto-configured for optimal performance
+- **Efficient List Updates**: In-place updates without full reloads
+- **Modern Java 17**: Enhanced performance and language features
+- **React Optimization**: Efficient re-rendering and state management
+
+### 📊 **API Documentation**
+- **OpenAPI 3 Specification**: Complete API documentation
+- **Swagger UI**: Interactive API testing interface
+- **RESTful Design**: Clean, consistent API endpoints
+- **Comprehensive Error Handling**: Specific error messages for better debugging
+
+### 🧪 **Testing & Quality**
+- **Production-Ready Code**: Clean, maintainable codebase
+- **Error Handling**: Comprehensive error handling across all layers
+- **User-Friendly Messages**: Clear validation and error messages
+- **Code Organization**: Modular architecture with separation of concerns
 
 ## 📋 Prerequisites
 
 Before running the application, ensure you have the following installed:
 
-- **Java 1.8** (Amazon Corretto 8 recommended)
-- **Maven 3.6+**
+### Backend Requirements
+- **Java 17** (OpenJDK 17 recommended)
+- **Maven 3.11+**
 - **Podman** (for PostgreSQL container)
+
+### Frontend Requirements
+- **Node.js 18+** (with npm)
 - **Git** (for version control)
+
+### Development Tools (Recommended)
+- **IntelliJ IDEA** or **VS Code**
+- **Postman** (for API testing)
 
 ## 🚀 Setup Instructions
 
 ### Step 1: Clone the Repository
 ```bash
 git clone <repository-url>
-cd school-listing-project
+cd Spring-Boot
 ```
 
-### Step 2: Set Up Java Environment
-```bash
-# Check Java version (should be 1.8)
-java -version
-
-# If using multiple Java versions, set JAVA_HOME
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
-```
-
-### Step 3: Start PostgreSQL Database
+### Step 2: Database Setup
 ```bash
 # Start Podman machine
 podman machine start
@@ -54,30 +102,76 @@ podman run --name postgres-school \
 podman exec -it postgres-school psql -U postgres -d schools -c "SELECT version();"
 ```
 
-### Step 4: Configure Application Properties
-The application is pre-configured with the following database settings in `src/main/resources/application.properties`:
+### Step 3: Backend Setup (Spring Boot)
+```bash
+# Navigate to backend directory
+cd educonnect
 
+# Set Java environment (if needed)
+export JAVA_HOME=/opt/homebrew/Cellar/openjdk@17/17.0.16/libexec/openjdk.jdk/Contents/Home
+
+# Run the Spring Boot application
+mvn spring-boot:run
+
+# Backend will be available at: http://localhost:8080
+# API Documentation: http://localhost:8080/swagger-ui.html
+```
+
+### Step 4: Frontend Setup (React)
+```bash
+# Open a new terminal and navigate to frontend directory
+cd school-directory-frontend
+
+# Install dependencies
+npm install
+
+# Start the React development server
+npm start
+
+# Frontend will be available at: http://localhost:3000
+```
+
+### Step 5: Application Configuration
+The application is pre-configured with the following settings:
+
+**Backend Configuration** (`educonnect/src/main/resources/application.properties`):
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/schools
 spring.datasource.username=postgres
 spring.datasource.password=postgres
 spring.datasource.driver-class-name=org.postgresql.Driver
-spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.hibernate.ddl-auto=update
 spring.sql.init.mode=always
 ```
 
-### Step 5: Run the Application
-```bash
-# Make Maven wrapper executable
-chmod +x mvnw
+**Frontend Configuration** (React app automatically configured for `http://localhost:8080` API)
 
-# Start the application
-./mvnw spring-boot:run
-```
+## 🎯 Access the Application
 
-### Step 6: Access the Application
-- **Application URL**: http://localhost:8080
-- **Default Port**: 8080
+Once both backend and frontend are running:
+
+- **Frontend Application**: http://localhost:3000
+- **Backend API**: http://localhost:8080
+- **API Documentation**: http://localhost:8080/swagger-ui.html
+
+## 🎮 Using the Application
+
+### For General Users
+1. **Browse Schools**: View all available schools on the home page
+2. **Search & Filter**: Use the search functionality to find schools by city, area, or name
+3. **View Details**: Click on any school to see detailed information
+4. **Favorites**: Add schools to your favorites for quick access
+5. **User Registration**: Create a new account to access additional features
+
+### For Administrators
+1. **Admin Login**: Use the "Admin Login" button in the navigation
+2. **School Management**: Create, update, and delete school information
+3. **Dashboard**: Access the admin dashboard for comprehensive school management
+4. **Real-time Updates**: Changes are reflected immediately without page refresh
+
+### Demo Accounts
+- **Admin Username**: `dhiraj`, **Password**: `password123` (minimum 6 characters)
+- **Admin Username**: `cognizant`, **Password**: `cognizant123`
 
 ## 📊 Database Schema
 
@@ -113,6 +207,20 @@ The application comes with pre-loaded data including:
   - Username: `dhiraj`, Password: `1234`
   - Username: `cognizant`, Password: `cognizant`
 
+## 📚 API Documentation
+
+### 🔗 **Interactive API Documentation**
+The application now includes comprehensive API documentation using **SpringDoc OpenAPI 3**:
+
+- **Swagger UI**: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+- **OpenAPI 3 Spec**: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
+- **API Docs JSON**: [http://localhost:8080/v3/api-docs.yaml](http://localhost:8080/v3/api-docs.yaml)
+
+### 🔍 **New Search Features**
+- **Search by Name**: `/search?name={schoolName}` - Find schools by name (case-insensitive)
+- **Advanced Filtering**: Enhanced search with rating thresholds and area-specific queries
+- **Optimized Queries**: All search operations use optimized database queries
+
 ## 🔗 API Endpoints
 
 ### Public Endpoints
@@ -123,6 +231,7 @@ The application comes with pre-loaded data including:
 | GET | `/` | Home page with search form | - |
 | POST | `/` | Process search form | `city`, `area` |
 | GET | `/listSchools` | Display filtered schools | Session: `city`, `area` |
+| GET | `/search` | **NEW**: Search schools by name | `name` (query param) |
 
 #### Authentication
 | Method | Endpoint | Description | Parameters |

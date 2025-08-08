@@ -1,0 +1,62 @@
+-- Complete PostgreSQL Data Initialization Script
+-- This file will be automatically executed by Spring Boot at startup
+-- Tables will be created by Hibernate based on JPA entities with auto-generated IDs
+
+-- Insert admin data (IDs will be auto-generated)
+-- Using BCrypt-encoded passwords: dhiraj/password123, cognizant/cognizant123
+INSERT INTO admin (username, email, city, password) VALUES 
+('dhiraj', 'dk@gmail.com', 'Buxar', '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqfcINVy4YvNiOpWpKGF.Km'),
+('cognizant', 'cognizant@cognizant.com', 'Pune', '$2a$12$8ZhNkF7qGOZ8OUBDNvJ8/.vGA1O/ZxvJn5n5wUe5PBSKMLrKUK9Wy');
+
+-- Insert all 50 schools from original data.txt (IDs will be auto-generated)
+INSERT INTO school (name, city, area, address, fees, bus, infrastructure, rating) VALUES 
+('VIBGYOR High School', 'Pune', 'Hinjewadi', 'Bhumkar Das Gugre Road New MIDC Road, Near HDFC Bank Hinjewadi, Phase 1, Maharashtra 411057', '12000/year', 'Yes', '4.3/5', '4.5/5'),
+('The Lexicon International School', 'Pune', 'Kalyani Nagar', 'S no 212/1, Central Avenue 59, next to Big Bazaar,Kalyani Nagar, Maharashtra 411006', '15000/year', 'Yes', '4.1/5', '4.3/5'),
+('Takshila Delhi Public School', 'Pune', 'Kalyani Nagar', 'Nyati Estate Rd, Nyati County, Mohammed Wadi, Maharashtra 411006', '13000/year', 'No', '3.5/5', '4.0/5'),
+('Singapore International School', 'Mumbai', 'Dahisar East', 'On National Highway No. 8, Post Mira Road, next to Thakur Mall, Mumbai, Maharashtra 401104', '16000/year', 'Yes', '4.4/5', '4.4/5'),
+('The Gateway School Of Mumbai', 'Mumbai', 'Chembur East', 'Sion-Trombay Road, Chembur East, next to Deonar Bus Depot, Mumbai, Maharashtra 400088', '14000/year', 'No', '3.9/5', '4.0/5'),
+('JBCN International School', 'Mumbai', 'Borivali West', 'Plot CTS No. 96, Remison Towers, Near Bhagwati Hospital, Baburao Ranade Marg, Borivali West, Mumbai, 400103', '17000/year', 'Yes', '4.3/5', '4.4/5'),
+('The Orbis School, Mundhwa', 'Pune', 'Hinjewadi', '35, 2D, Manjari Rd, Lonkar Nagar, Mundhwa, Pune, Maharashtra 411057', '13780/year', 'No', '3.8/5', '4.2/5'),
+('D.A.V. Public School', 'Pune', 'Hinjewadi', 'S.NO 157, Plot no 31, Seasons Road, Raagdari Society, Aundh, Pune, Maharashtra 411057', '14000/year', 'Yes', '4.4/5', '4.4/5'),
+('Podar International School', 'Pune', 'Hinjewadi', 'Survey No. 54/2, Hinjewadi Phase II, Near Rajiv Gandhi Infotech Park, Pune, Maharashtra 411057', '15000/year', 'Yes', '4.2/5', '4.3/5'),
+('Delhi Public School Pune', 'Pune', 'Hinjewadi', 'Survey No. 270/1, Hinjewadi Phase III, Near Wipro Circle, Pune, Maharashtra 411057', '16000/year', 'Yes', '4.5/5', '4.6/5'),
+('Ryan International School', 'Mumbai', 'Chembur East', 'Plot No. 272, Chembur East, Near Chembur Railway Station, Mumbai, Maharashtra 400088', '13500/year', 'No', '3.7/5', '4.1/5'),
+('Bombay Scottish School', 'Mumbai', 'Borivali West', 'Shanti Ashram, Borivali West, Near Borivali Railway Station, Mumbai, Maharashtra 400103', '18000/year', 'Yes', '4.6/5', '4.7/5'),
+('NES International School Mumbai', 'Mumbai', 'Chembur East', 'Agrawal Rd, Opposite Sardar Pratap Singh Garden, Swapna Nagari,Chembur East, Mumbai, Maharashtra 400088', '18000/year', 'Yes', '4.2/5', '4.3/5'),
+('Campion School', 'Mumbai', 'Borivali west', 'No.13, Cooperage Rd, Dr Ambedkar Statue Chowk Area, Fort, Mumbai, Maharashtra 411057', '14600/year', 'Yes', '4.1/5', '4.2/5'),
+('NES International School Mumbai', 'Mumbai', 'Mulund west', 'Agrawal Rd, Opposite Sardar Pratap Singh Garden, Swapna Nagari, Mulund West, Mumbai, Maharashtra 400082', '10600/year', 'No', '4.0/5', '3.2/5'),
+('JBCN International School', 'Mumbai', 'Andheri west', 'No. 1, Off Andheri Link Road, Behind Tarapore Towers, Mhada Colony, Oshiwara, Andheri West, Mumbai, Maharashtra 400058', '14600/year', 'Yes', '4.1/5', '4.2/5'),
+('Ajmera Global School', 'Mumbai', 'Andheri west', 'Eksar Rd, Yogi Nagar, Borivali West, Mumbai, Maharashtra 411058', '14600/year', 'Yes', '4.1/5', '4.0/5'),
+('Oberoi International School', 'Mumbai', 'Goregaon East', 'Oberoi Garden City, Goregaon East, Near Western Express Highway, Mumbai, Maharashtra 400063', '19000/year', 'Yes', '4.7/5', '4.8/5'),
+('Jamnabai Narsee School', 'Mumbai', 'Juhu', 'Jamnabai Narsee Campus, Juhu Tara Road, Juhu, Mumbai, Maharashtra 400049', '17500/year', 'Yes', '4.4/5', '4.5/5'),
+('Dhirubhai Ambani International School', 'Mumbai', 'Bandra Kurla Complex', 'Dhirubhai Ambani Knowledge City, Bandra Kurla Complex, Mumbai, Maharashtra 400098', '25000/year', 'Yes', '4.9/5', '4.9/5'),
+('Scindia School', 'Bhopal', 'Gwalior', 'Fort Road, Gwalior, Madhya Pradesh 474008', '20000/year', 'Yes', '4.8/5', '4.7/5'),
+('Carmel Convent School', 'Bhopal', 'TT Nagar', 'TT Nagar, Near Habibganj Railway Station, Bhopal, Madhya Pradesh 462003', '12000/year', 'No', '4.0/5', '4.2/5'),
+('St. Joseph Co-Ed School', 'Bhopal', 'Arera Colony', 'Arera Colony, Near Bittan Market, Bhopal, Madhya Pradesh 462016', '11000/year', 'Yes', '3.8/5', '4.0/5'),
+('Campion School Bhopal', 'Bhopal', 'Bagmugalia', 'Bagmugalia, Near BHEL, Bhopal, Madhya Pradesh 462043', '13500/year', 'Yes', '4.2/5', '4.3/5'),
+('Delhi Public School Bhopal', 'Bhopal', 'Zone II', 'Zone II, Maharana Pratap Nagar, Bhopal, Madhya Pradesh 462011', '15000/year', 'Yes', '4.3/5', '4.4/5'),
+('Sanskar School', 'Bhopal', 'Kolar Road', 'Kolar Road, Near Kolar Dam, Bhopal, Madhya Pradesh 462042', '10000/year', 'No', '3.5/5', '3.8/5'),
+('Vidya Ashram Senior Secondary School', 'Bhopal', 'Sagar', 'Civil Lines, Sagar, Madhya Pradesh 470001', '9000/year', 'No', '3.2/5', '3.5/5'),
+('Ryan International School Bhopal', 'Bhopal', 'Hoshangabad Road', 'Hoshangabad Road, Near Chirayu Hospital, Bhopal, Madhya Pradesh 462026', '14000/year', 'Yes', '4.1/5', '4.2/5'),
+('Choithram School', 'Bhopal', 'Manik Bagh', 'Manik Bagh, Near Governor House, Bhopal, Madhya Pradesh 462003', '16000/year', 'Yes', '4.5/5', '4.6/5'),
+('Shree Bhavan''s Bharti Public School', 'Bhopal', 'Kapal', '46/2, Kerwa Dam Rd, near Sakshi Dhaba, Kopal, Bhopal, Madhya Pradesh 462044', '17000/year', 'Yes', '4.3/5', '4.4/5'),
+('SAGE International School', 'Bhopal', 'Ayodhya Bypass', 'Ayodhya Bypass Rd, Near SIRT, K-Sector, Ayodhya Nagar, Bhopal, Madhya Pradesh 462041', '14000/year', 'No', '3.9/5', '4.0/5'),
+('NRI Global Discovery School', 'Bhopal', 'Ayodhya Bypass', 'Near AIMS Hospital, Bagsewaniya, Saket Nagar, Habib Ganj, Bhopal, Madhya Pradesh 462041', '17000/year', 'Yes', '4.3/5', '4.4/5'),
+('Oakridge International School', 'Hyderabad', 'Bachupally', 'Survey No. 229, Bachupally, Quthbullapur Mandal, Hyderabad, Telangana 500090', '18000/year', 'Yes', '4.6/5', '4.7/5'),
+('Glendale Academy', 'Hyderabad', 'Kompally', 'Survey No. 142, Kompally, Quthbullapur Mandal, Hyderabad, Telangana 500100', '15000/year', 'Yes', '4.2/5', '4.3/5'),
+('Meridian School', 'Hyderabad', 'Madhapur', 'Plot No. 60, Madhapur, Near Cyber Towers, Hyderabad, Telangana 500081', '16000/year', 'Yes', '4.4/5', '4.5/5'),
+('Indus International School', 'Hyderabad', 'Shankarpally', 'Survey No. 74, Shankarpally Mandal, Hyderabad, Telangana 500075', '20000/year', 'Yes', '4.8/5', '4.8/5'),
+('Rockwell International School', 'Hyderabad', 'Kondapur', 'Survey No. 83, Kondapur, Near Botanical Garden, Hyderabad, Telangana 500084', '17000/year', 'Yes', '4.3/5', '4.4/5'),
+('Chirec Public School', 'Hyderabad', 'Kondapur', 'Plot No. 31-32, Kondapur, Near HITEC City, Hyderabad, Telangana 500084', '14000/year', 'No', '3.9/5', '4.1/5'),
+('Nasr School', 'Hyderabad', 'Kurnool', 'Kurnool Road, Near Railway Station, Kurnool, Andhra Pradesh 518001', '11000/year', 'No', '3.6/5', '3.8/5'),
+('Bhashyam Public School', 'Hyderabad', 'Miyapur', 'Plot No. 40-41, Miyapur, Near Miyapur Metro Station, Hyderabad, Telangana 500049', '13000/year', 'Yes', '4.0/5', '4.2/5'),
+('Gowtham Model School', 'Hyderabad', 'Malakpet', 'Malakpet, Near Osmania University, Hyderabad, Telangana 500036', '10000/year', 'No', '3.4/5', '3.7/5'),
+('Silver Oaks International School', 'Hyderabad', 'Bachupally', 'Survey No. 188, Bachupally, Near Nizampet, Hyderabad, Telangana 500090', '16000/year', 'Yes', '4.3/5', '4.4/5'),
+('Sancta Maria International School', 'Hyderabad', 'Dilsukhnagar', 'Plot No. 157, Dilsukhnagar, Near LB Nagar, Hyderabad, Telangana 500060', '12000/year', 'Yes', '3.8/5', '4.0/5'),
+('Slate The School', 'Hyderabad', 'Miyapur', 'Survey No. 64, Miyapur, Near Lingampally, Hyderabad, Telangana 500049', '19000/year', 'Yes', '4.7/5', '4.8/5'),
+('Oakridge International School', 'Hyderabad', 'Gachibowli', 'Survey No. 229, Gachibowli, Near Financial District, Hyderabad, Telangana 500032', '21000/year', 'Yes', '4.9/5', '4.9/5'),
+('Gitanjali Devashray', 'Hyderabad', 'Begumpet', 'Plot No. 123, Begumpet, Near Secunderabad Airport, Hyderabad, Telangana 500016', '13500/year', 'Yes', '4.1/5', '4.2/5'),
+('Jubilee Hills Public School', 'Hyderabad', 'Jubilee Hills', 'Block III, Rd Number 71, Jubilee Hills, Hyderabad, Telangana 500033', '13000/year', 'No', '3.5/5', '4.0/5'),
+('EuroSchool Hyderabad', 'Hyderabad', 'Jubilee Hills', 'Survey No. 54, Near Hotel Quality Pearl inn, Hitech City- Gachibowli Link Road Jubilee Hills 500033', '16000/year', 'Yes', '4.4/5', '4.4/5'),
+('CHIREC International School', 'Hyderabad', 'Serilingampally', 'Plot No: 277 to 282, Gachibowli Road, Telecom Officers Colony Bhaghyalakshmi 500019', '14000/year', 'No', '3.9/5', '4.0/5'),
+('Kendriya vidyalaya no 1 uppal', 'Hyderabad', 'Uppal', 'Annapurna Colony Street Number 2, Uppal, Hyderabad, Telangana 500039', '17000/year', 'Yes', '4.3/5', '4.4/5');
