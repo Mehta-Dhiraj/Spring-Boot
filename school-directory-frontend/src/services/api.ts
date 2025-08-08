@@ -31,6 +31,8 @@ export const authApi = {
   logout: () => api.post('/auth/logout'),
   getProfile: () => api.get('/auth/profile'),
   profile: () => api.get('/auth/profile'),
+  updateProfile: (profileData: { currentUsername: string; username: string; email: string; city: string; password?: string }) => 
+    api.put('/auth/profile', profileData),
 };
 
 export default api;

@@ -5,8 +5,8 @@
 -- Insert admin data (IDs will be auto-generated)
 -- Using BCrypt-encoded passwords: dhiraj/password123, cognizant/cognizant123
 INSERT INTO admin (username, email, city, password) VALUES 
-('dhiraj', 'dk@gmail.com', 'Buxar', '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqfcINVy4YvNiOpWpKGF.Km'),
-('cognizant', 'cognizant@cognizant.com', 'Pune', '$2a$12$8ZhNkF7qGOZ8OUBDNvJ8/.vGA1O/ZxvJn5n5wUe5PBSKMLrKUK9Wy');
+('dhiraj', 'dhiraj@gmail.com', 'Buxar', '$2a$12$ZchahU9sRj1Yc8ZA47H9w.P2AR8mY2wtue34pwsQ69WuAYCtZ3Fqy'),
+('test', 'test@gmail.com', 'Pune', '$2a$12$TxGZCnZJErxQ0znwGQjx.uCLRazkQ5PL3Slr79OO6kt6jsZxlTneq');
 
 -- Insert all 50 schools from original data.txt (IDs will be auto-generated)
 INSERT INTO school (name, city, area, address, fees, bus, infrastructure, rating) VALUES 

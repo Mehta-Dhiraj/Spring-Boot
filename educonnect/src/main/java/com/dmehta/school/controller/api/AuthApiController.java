@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -186,6 +187,7 @@ public class AuthApiController {
                         "id", admin.getId(),
                         "username", admin.getUsername(),
                         "email", admin.getEmail(),
+                        "city", admin.getCity(),
                         "role", "ADMIN"
                     ));
                     
@@ -196,6 +198,84 @@ public class AuthApiController {
             return ResponseEntity.status(401).body(createErrorResponse("User not authenticated"));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(createErrorResponse("An error occurred while fetching profile"));
+        }
+    }
+
+    @PutMapping("/profile")
+    @Operation(summary = "Update user profile", description = "Update current authenticated user's profile")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Profile updated successfully"),
+        @ApiResponse(responseCode = "400", description = "Invalid input data"),
+        @ApiResponse(responseCode = "401", description = "User not authenticated"),
+        @ApiResponse(responseCode = "409", description = "Username already exists"),
+        @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<Map<String, Object>> updateProfile(@RequestBody ProfileUpdateRequest request) {
+        try {
+            // For now, we'll use the current username from the request or find a way to get it
+            // Since we're using simple authentication, let's get the username from the request
+            if (request.getCurrentUsername() == null || request.getCurrentUsername().trim().isEmpty()) {
+                return ResponseEntity.status(401).body(createErrorResponse("Current username is required for authentication"));
+            }
+            
+            String currentUsername = request.getCurrentUsername();
+            Admin admin = adminRepository.findByUsername(currentUsername);
+            
+            if (admin == null) {
+                return ResponseEntity.status(401).body(createErrorResponse("User not found"));
+            }
+            
+            // Validate input
+            if (request.getUsername() == null || request.getUsername().trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(createErrorResponse("Username is required"));
+            }
+            
+            if (request.getEmail() == null || request.getEmail().trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(createErrorResponse("Email is required"));
+            }
+            
+            if (request.getCity() == null || request.getCity().trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(createErrorResponse("City is required"));
+            }
+            
+            // Check if new username already exists (only if username is being changed)
+            if (!currentUsername.equals(request.getUsername())) {
+                Admin existingAdmin = adminRepository.findByUsername(request.getUsername());
+                if (existingAdmin != null) {
+                    return ResponseEntity.status(409).body(createErrorResponse("Username already exists"));
+                }
+            }
+            
+            // Update profile fields
+            admin.setUsername(request.getUsername());
+            admin.setEmail(request.getEmail());
+            admin.setCity(request.getCity());
+            
+            // Update password if provided
+            if (request.getPassword() != null && !request.getPassword().trim().isEmpty()) {
+                if (request.getPassword().length() < 6) {
+                    return ResponseEntity.badRequest().body(createErrorResponse("Password must be at least 6 characters long"));
+                }
+                admin.setPassword(passwordEncoder.encode(request.getPassword()));
+            }
+            
+            // Save updated admin
+            adminRepository.save(admin);
+            
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("message", "Profile updated successfully");
+            response.put("user", Map.of(
+                "id", admin.getId(),
+                "username", admin.getUsername(),
+                "email", admin.getEmail(),
+                "city", admin.getCity(),
+                "role", "ADMIN"
+            ));
+            
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(createErrorResponse("An error occurred while updating profile"));
         }
     }
 
@@ -224,6 +304,65 @@ public class AuthApiController {
 
         public void setUsername(String username) {
             this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+    }
+
+    // Inner class for profile update request
+    public static class ProfileUpdateRequest {
+        private String currentUsername; // For authentication
+        private String username;
+        private String email;
+        private String city;
+        private String password; // Optional - only if user wants to change password
+
+        public ProfileUpdateRequest() {}
+
+        public ProfileUpdateRequest(String currentUsername, String username, String email, String city, String password) {
+            this.currentUsername = currentUsername;
+            this.username = username;
+            this.email = email;
+            this.city = city;
+            this.password = password;
+        }
+
+        public String getCurrentUsername() {
+            return currentUsername;
+        }
+
+        public void setCurrentUsername(String currentUsername) {
+            this.currentUsername = currentUsername;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getCity() {
+            return city;
+        }
+
+        public void setCity(String city) {
+            this.city = city;
         }
 
         public String getPassword() {
