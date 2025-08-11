@@ -1,14 +1,29 @@
--- Complete PostgreSQL Data Initialization Script
--- This file will be automatically executed by Spring Boot at startup
--- Tables will be created by Hibernate based on JPA entities with auto-generated IDs
+DROP TABLE IF EXISTS school CASCADE;
+DROP TABLE IF EXISTS admin CASCADE;
 
--- Insert admin data (IDs will be auto-generated)
--- Using BCrypt-encoded passwords: dhiraj/password123, cognizant/cognizant123
+CREATE TABLE IF NOT EXISTS admin (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255),
+    city VARCHAR(255),
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS school (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    area VARCHAR(255) NOT NULL,
+    address TEXT,
+    fees VARCHAR(100),
+    bus VARCHAR(10),
+    infrastructure VARCHAR(20),
+    rating VARCHAR(20)
+);
+
 INSERT INTO admin (username, email, city, password) VALUES 
 ('dhiraj', 'dhiraj@gmail.com', 'Buxar', '$2a$12$ZchahU9sRj1Yc8ZA47H9w.P2AR8mY2wtue34pwsQ69WuAYCtZ3Fqy'),
 ('test', 'test@gmail.com', 'Pune', '$2a$12$TxGZCnZJErxQ0znwGQjx.uCLRazkQ5PL3Slr79OO6kt6jsZxlTneq');
-
--- Insert all 50 schools from original data.txt (IDs will be auto-generated)
 INSERT INTO school (name, city, area, address, fees, bus, infrastructure, rating) VALUES 
 ('VIBGYOR High School', 'Pune', 'Hinjewadi', 'Bhumkar Das Gugre Road New MIDC Road, Near HDFC Bank Hinjewadi, Phase 1, Maharashtra 411057', '12000/year', 'Yes', '4.3/5', '4.5/5'),
 ('The Lexicon International School', 'Pune', 'Kalyani Nagar', 'S no 212/1, Central Avenue 59, next to Big Bazaar,Kalyani Nagar, Maharashtra 411006', '15000/year', 'Yes', '4.1/5', '4.3/5'),

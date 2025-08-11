@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/schools")
-@CrossOrigin(origins = "http://localhost:3000") // React dev server
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8090", "http://educonnect-frontend"}) // React dev server and containerized setup
 @Tag(name = "School Management", description = "APIs for managing school information")
 public class SchoolApiController {
 
