@@ -27,7 +27,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8090", "http://educonnect-frontend"})
 @Tag(name = "Authentication", description = "Authentication and user management endpoints")
 public class AuthApiController {
 

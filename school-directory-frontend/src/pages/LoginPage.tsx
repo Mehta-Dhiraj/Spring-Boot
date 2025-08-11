@@ -60,11 +60,11 @@ const LoginPage: React.FC = () => {
           </Box>
 
           {/* Welcome message */}
-          <Box sx={loginPageStyles.welcomeMessage}>
+          {/* <Box sx={loginPageStyles.welcomeMessage}>
             <Typography sx={loginPageStyles.welcomeText}>
               Welcome back! Please sign in to access the admin dashboard and manage school listings.
             </Typography>
-          </Box>
+          </Box> */}
 
           {/* Login form */}
           <Box sx={loginPageStyles.formContainer}>

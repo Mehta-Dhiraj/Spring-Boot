@@ -1,73 +1,74 @@
-version: '3.8'
-
 services:
-  # PostgreSQL Database
   database:
-    image: postgres:13
-    container_name: educonnect-db
+    image: postgres:15
+    container_name: postgres-school
     environment:
-      POSTGRES_DB: schools
+      POSTGRES_DB: school_directory
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    networks:
-      - educonnect-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
+      interval: 30s
+      timeout: 10s
       retries: 5
+    networks:
+      - educonnect-network
+    restart: unless-stopped
 
-  # Spring Boot Backend
   backend:
     build:
       context: ./educonnect
       dockerfile: Dockerfile
     container_name: educonnect-backend
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/schools
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-school:5432/school_directory
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
-      SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
-      SPRING_SQL_INIT_MODE: always
+      SPRING_DATASOURCE_PASSWORD: password
     ports:
       - "8080:8080"
     depends_on:
       database:
         condition: service_healthy
-    networks:
-      - educonnect-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/schools"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
+    networks:
+      - educonnect-network
+    restart: unless-stopped
 
-  # React Frontend
   frontend:
     build:
       context: ./school-directory-frontend
       dockerfile: Dockerfile
+      args:
+        REACT_APP_API_BASE_URL: /api
     container_name: educonnect-frontend
     ports:
-      - "80:80"
+      - "3000:80"
     depends_on:
-      - backend
-    networks:
-      - educonnect-network
+      backend:
+        condition: service_healthy
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/health"]
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
       interval: 30s
       timeout: 10s
       retries: 3
+    networks:
+      - educonnect-network
+    restart: unless-stopped
 
-volumes:
-  postgres_data:
 
 networks:
   educonnect-network:
     driver: bridge
+
+volumes:
+  postgres_data:
